@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+#define NSize 100
 
 
-typedef struct ThesisRecord
+struct studentRecord
 {
     /* data */
 };
