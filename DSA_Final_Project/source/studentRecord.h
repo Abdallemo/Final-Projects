@@ -3,13 +3,13 @@
 #define NSize 100
 #define NID 10 
 
-//this Struct is for info outside the overal thesis record
+//**this Struct is for info outside the overal thesis record
 struct Contact_Information
 {
-    char Email_address[NSize]; //for furhter info
-    char Phone_Number[NID]; //Most number in the Word consist 6-10 digits
+    char Email_address[NSize]; //**for furhter info
+    char Phone_Number[NID]; //**Most number in the Word consist 6-10 digits
 };
-typedef Contact_Information info;
+typedef struct Contact_Information info;
 
 struct Student_Record
 {
@@ -19,4 +19,7 @@ struct Student_Record
     char Supervisor_Name[NSize];
     info std_info;
 };
-typedef Student_Record studentRecord;
+typedef struct Student_Record StudentRecord;
+
+
+
