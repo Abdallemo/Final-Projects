@@ -4,5 +4,5 @@
 
 typedef struct ThesisRecord
 {
-    /* data */
+    /* studentRecord Record; */
 };
