@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
-
-
-typedef struct ThesisRecord
+#include "studentRecord.h"
+struct ThesisRecord
 {
-    /* studentRecord Record; */
+    studentRecord Record; 
+    struct ThesisRecord *next;
 };
