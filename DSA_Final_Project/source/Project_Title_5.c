@@ -15,20 +15,20 @@
         Correct Output
 
 */
-
 struct ThesisRecord
 {
     StudentRecord Records; //an strcut from student record that contains all data called linklist&struct
     struct ThesisRecord *next;
 };
+
 typedef struct ThesisRecord *Thesis_RecordPtr;
-int ThesisIDCounter = 1000;
+int ThesisIDCounter = 1000;//this is for Automtic generate An Thesis_ID
 // Function to generate a unique Thesis_ID for each record
 void generateThesisID(StudentRecord *record);
 void Insert(Thesis_RecordPtr *head,StudentRecord NewRecord);//FIFO method (First Recorded First on the List)
 bool Delete(Thesis_RecordPtr *head, char Target_ID[NID]);
 void Display_Info(Thesis_RecordPtr Current_head);
-void IsEmpty(Thesis_RecordPtr head);
+int IsEmpty(Thesis_RecordPtr head);
 void UpdateRecord(Thesis_RecordPtr *head,char Target_ID[NID],char NewData[NSize],int fieldToUpdate);//usecase to Update
 void search(Thesis_RecordPtr *head,char Target_ID[NID]);
 void Instruction();
@@ -115,6 +115,7 @@ int main()
                 getInput("\nEnter The Submission Date", SubmissionDate,NID);
                 strcpy(StdRecord.Submission_Date , SubmissionDate);
                 Insert(&strPtr,StdRecord);
+                printf("Data For ID %s sucssesfuly Added\n",StdRecord.Student_ID);
             break;
 
             case 2:
@@ -128,7 +129,12 @@ int main()
 
             case 3:
                 getInput("Enter ID to Update Existing Student Record", StudentID, NID);
-
+                //input validation to check if the list is empty
+                if (strPtr == NULL) 
+                {
+                    printf("Error: The list is empty. Cannot update.\n");
+                    break;
+                }
                 int fieldToUpdate;
                 printf("--------------fields to update:--------------\n");
                 printf("1. Student Name\n");
@@ -152,12 +158,17 @@ int main()
                 UpdateRecord(&strPtr, StudentID, NewData, fieldToUpdate);
             break;    
             case 4:
+                getInput("Enter ID to Find Existing Student Record",StudentID,NID);
+                search(&strPtr,StudentID);
             break;    
             case 5:
+                Display_Info(strPtr);
             break;    
             case 6:
+                exit(0);
             break;
             default:
+                printf("There Is No %d In the Available List\n",choice);
             break;    
         }
         Instruction();
@@ -241,15 +252,15 @@ void UpdateRecord(Thesis_RecordPtr *head, char Target_ID[NID], char NewData[NSiz
         {
             case 1:
                 strcpy(current->Records.Student_Name, NewData);
-                printf("Record with ID %s updated successfully\n", Target_ID);
+                printf("-----------------Record with ID %s updated successfully-----------------\n", Target_ID);
                 break;
             case 2:
                 strcpy(current->Records.Student_ID, NewData);
-                printf("Record with ID %s updated successfully\n", Target_ID);
+                printf("-----------------Record with ID %s updated successfully-----------------\n", Target_ID);
                 break;
             case 3:
                 strcpy(current->Records.Student_Program, NewData);
-                printf("Record with ID %s updated successfully\n", Target_ID);
+                printf("-----------------Record with ID %s updated successfully-----------------\n", Target_ID);
                 break;
             // 
             default:
@@ -263,13 +274,15 @@ void UpdateRecord(Thesis_RecordPtr *head, char Target_ID[NID], char NewData[NSiz
 }
 void Instruction()
 {
-    puts("Student Recorder Program:");
+    puts("-------------------------------------------------------------------");
+    puts("              Student Recorder Program:-\n");
     puts("1. To Insert New Student Record");
     puts("2. To Remove Existing Student Record");
     puts("3. To Update Existing Student Record");
     puts("4. To Find Existing Student Record");
     puts("5. To Display All Student Data Recorded");
     puts("6. Exit the App");
+    puts("-------------------------------------------------------------------\n");
     printf("Enter Your Choice : ");
 }
 void search(Thesis_RecordPtr *head, char Target_ID[NID]) {
@@ -280,7 +293,9 @@ void search(Thesis_RecordPtr *head, char Target_ID[NID]) {
     }
 
     if (current != NULL) {
-        printf("Record with ID %s found successfully\n", Target_ID);
+        printf("\n");
+        printf("-------------Record with ID %s found successfully-------------\n", Target_ID);
+        printf("Thesis ID: %s\n", current->Records.Thesis_ID);
         printf("Student Name: %s\n", current->Records.Student_Name);
         printf("Student ID: %s\n", current->Records.Student_ID);
         printf("Student Program: %s\n", current->Records.Student_Program);
@@ -289,6 +304,8 @@ void search(Thesis_RecordPtr *head, char Target_ID[NID]) {
         printf("Submission Date: %s\n", current->Records.Submission_Date);
         printf("Email: %s\n", current->Records.std_info.Email_address);
         printf("Phone: %s\n", current->Records.std_info.Phone_Number);
+        puts("-------------------------------------------------------------------\n");
+        printf("\n");
         
     } else {
         printf("Student with ID %s not found\n", Target_ID);
@@ -311,4 +328,40 @@ void generateThesisID(StudentRecord *record)
 {
     sprintf(record->Thesis_ID, "T%04d", ThesisIDCounter++);
 
+}
+void Display_Info(Thesis_RecordPtr Current_head)
+{
+    if (IsEmpty(Current_head))
+    {
+        puts("-------------------------------------------------------------------\n");
+        printf("There Is No Student Record Yet\n");
+        puts("-------------------------------------------------------------------\n");
+
+    }else
+    {
+        while (Current_head != NULL)
+        {
+            printf("\n");
+            printf("-----------------Displaying All Student Data Recorded-----------------\n");
+            printf("Thesis ID: %s\n", Current_head->Records.Thesis_ID);
+            printf("Student Name: %s\n", Current_head->Records.Student_Name);
+            printf("Student ID: %s\n", Current_head->Records.Student_ID);
+            printf("Student Program: %s\n", Current_head->Records.Student_Program);
+            printf("Supervisor Name: %s\n", Current_head->Records.Supervisor_Name);
+            printf("Thesis Status: %s\n", Current_head->Records.Thesis_Status);
+            printf("Submission Date: %s\n", Current_head->Records.Submission_Date);
+            printf("Email: %s\n", Current_head->Records.std_info.Email_address);
+            printf("Phone: %s\n", Current_head->Records.std_info.Phone_Number);
+            puts("-------------------------------------------------------------------\n");
+            printf("\n");
+            Current_head = Current_head->next;
+        }
+        
+    }
+    
+    
+}
+int IsEmpty(Thesis_RecordPtr head)
+{
+     return head == NULL;
 }
