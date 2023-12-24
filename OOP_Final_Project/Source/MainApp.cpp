@@ -21,7 +21,7 @@ participants: Fahad , Abdikarin , marian & abdullahi
 |page shall contain UTHM logo, project title, names and matric no of all project members.              |
 |______________________________________________________________________________________________________|
 
-                    the main driver needs to be able to read write to a .txt file
+                    the main driver needs to be able to read write to a .txt file.
 */
 int main(){
 
