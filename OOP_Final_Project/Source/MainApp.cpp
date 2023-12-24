@@ -1,5 +1,5 @@
-#include <iostream>
 #include "LMS.hpp"
+#include <fstream>  
 
 
 using namespace std;
@@ -21,12 +21,20 @@ participants: Fahad , Abdikarin , marian & abdullahi
 |page shall contain UTHM logo, project title, names and matric no of all project members.              |
 |______________________________________________________________________________________________________|
 
-                    the main driver needs to be able to read write to a .txt file.
+                    the main driver needs to be able to read write to a .txt file using librr ofstream 
+                    wtring to a file Exmaple : ofstream MyFile("filename.txt");
+                    reading from a file Exmaple : ifstream MyReadFile("filename.txt"); Reff: https://rb.gy/eh3dqi
+
 */
 int main(){
 
+   // current date and time on the current system
+   time_t now = time(0);
 
+   // convert now to string form
+   char* date_time = ctime(&now);
 
+   cout << "The current date and time is: " << date_time << endl;
 
     return 0;
 }

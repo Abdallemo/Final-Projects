@@ -1,4 +1,3 @@
-#include <iostream>
 #include "LMS.hpp"
 
 /*
@@ -9,5 +8,10 @@
     Delete()
     Add()
     generateReport()
-    
+
 */
+
+struct Record
+{
+
+};
