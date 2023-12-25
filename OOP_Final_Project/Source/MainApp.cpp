@@ -1,4 +1,4 @@
-#include "LMS.hpp"
+#include "FTS.hpp"
 #include <fstream>  
 
 
@@ -28,7 +28,6 @@ participants: Fahad , Abdikarin , marian & abdullahi
 */
 int main(){
 
-   // current date and time on the current system
 
 
     return 0;
