@@ -31,7 +31,7 @@ avtivities :
          (moderate exercise/sports 3-5 days/week)BMR x 1.55
           (hard exercise/sports 6-7 days a week)BMR x 1.725
           (very hard exercise/sports & physical job or 2x training)BMR x 1.9
-
+added '  abdikrin
 */
 class Person
 {
@@ -164,5 +164,6 @@ void FitnessTracker::setDtails()
 void FitnessTracker::Register()
 {
     cout<<"................User Account Creation................"<<endl;
+    cout<<"Enter UserName : ";
     
 };
