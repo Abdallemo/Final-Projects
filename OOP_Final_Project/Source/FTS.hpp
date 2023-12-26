@@ -158,11 +158,10 @@ class FitnessTracker
     private:
         int user_type;
         int user_id;
-        string Username;
         Activity activities;
         
-        
     public:
+        string Username;      
         void setDtails();
         void Register();
         void GetDetails();

@@ -23,7 +23,7 @@ class FtsList
         FtsRecord *head;
     public:
         void insert(FitnessTracker newtrckerapp);//LIFO Type
-        void Delete();
+        void Delete(string Targetusr);
         void Search();
         void sort();
         void Update();
@@ -61,4 +61,38 @@ void FtsList::insert(FitnessTracker newtrckerapp)
         head = newNodeptr;
     }
 
+}
+void FtsList::Delete(string Targetusr)
+{
+    if(Isempty()==0)
+    {
+        cout<<"There Is No Data Yet.."<<endl;
+
+    }
+    FtsRecord *currnt_record = head;
+    FtsRecord *previous_record = nullptr;
+    // so here is Traverse the list to find the node to delete
+    while (currnt_record != nullptr && currnt_record->trckerapp.Username != Targetusr)
+    {
+        previous_record = currnt_record;
+        currnt_record = currnt_record->Nextptr;
+    }
+    if(currnt_record != nullptr)
+    {
+        if(previous_record==nullptr)
+        {
+            head = currnt_record->Nextptr;
+        }else
+        {
+            previous_record->Nextptr = currnt_record->Nextptr;
+        }
+        delete currnt_record;
+        cout<<"User "<< Targetusr<<" deleted successfully.."<<endl;
+        
+    }else
+    {
+        cout<<"User "<<Targetusr<<" not found."<<endl;
+    }
+    
+    
 }
