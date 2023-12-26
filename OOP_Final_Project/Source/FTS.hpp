@@ -76,12 +76,14 @@ class Activity:public Person
         double setBMR();
         void GetPersonData();
         
+        
 };
 void Activity::GetPersonData()
 {
     cout<<"|Age : "<<Age<<"|"<<endl;
     cout<<"|Height : "<<hight<<"|"<<endl;
     cout<<"|Weight : "<<weight<<"|"<<endl;
+    
 
 };
 
@@ -117,21 +119,17 @@ double Activity::setBMR()
         return Calories = BMR*1.2; //act1
         break;
     case 2:
-        return Calories = BMR*1.2;//act2
+        return Calories = BMR*1.375;//act2
         break;
     case 3:
-        return Calories = BMR*1.2;//act3
+        return Calories = BMR*1.55;//act3
         break;
     case 4:
-        return Calories = BMR*1.2;//act4
+        return Calories = BMR*1.725;//act4
         break;
     case 5:
-        return Calories = BMR*1.2;//act5
+        return Calories = BMR*1.9;//act5
         break;
-    case 6:
-        return Calories = BMR*1.2;//act6
-        break;
-    
     default:
         cout<<"InValid Choice Number to enter is b/w 1-6 "<<endl;
         break;

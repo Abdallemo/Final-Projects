@@ -26,7 +26,7 @@ class FtsList
         void Delete(string Targetusr);
         void Search();
         void sort();
-        void Update();
+        void Update(string Targetusr ,string);
         void Display();
         void generateReport();
         int Isempty();

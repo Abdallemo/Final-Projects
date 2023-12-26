@@ -1,6 +1,7 @@
 #include "FTS.hpp"
 #include <fstream>  
-
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
@@ -26,10 +27,24 @@ participants: Fahad , Abdikarin , marian & abdullahi
                     reading from a file Exmaple : ifstream MyReadFile("filename.txt"); Reff: https://rb.gy/eh3dqi
 
 */
+std::string generateUniqueID() {
+    static char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    static int counter = 10;
+
+    char randomAlphabet = alphabet[std::rand() % (sizeof(alphabet) - 1)];
+    int randomNumber = counter++;
+
+    return std::string(1, randomAlphabet) + std::to_string(randomNumber);
+}
 int main(){
 
-FitnessTracker fts;
-fts.SetType();
+
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
+    std::cout << "Generated Unique ID: " << generateUniqueID() << "\n";
+
+
+
 
     return 0;
 }
