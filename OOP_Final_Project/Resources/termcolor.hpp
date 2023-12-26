@@ -131,19 +131,20 @@ namespace termcolor
         return stream;
     }
 
-    template <typename CharT>
-    std::basic_ostream<CharT>& underline(std::basic_ostream<CharT>& stream)
+template <typename CharT>
+std::basic_ostream<CharT>& underline(std::basic_ostream<CharT>& stream)
+{
+    if (_internal::is_colorized(stream))
     {
-        if (_internal::is_colorized(stream))
-        {
-        #if defined(TERMCOLOR_USE_ANSI_ESCAPE_SEQUENCES)
-            stream << "\033[4m";
-        #elif defined(TERMCOLOR_USE_WINDOWS_API)
-            _internal::win_change_attributes(stream, -1, COMMON_LVB_UNDERSCORE);
-        #endif
-        }
-        return stream;
+    #if defined(TERMCOLOR_USE_ANSI_ESCAPE_SEQUENCES)
+        stream << "\033[4m";  // ANSI escape sequence for underline
+    #elif defined(_WIN32) && defined(TERMCOLOR_USE_WINDOWS_API)
+        _internal::win_change_attributes(stream, -1, COMMON_LVB_UNDERSCORE);  // Windows API for underline
+    #endif
     }
+    return stream;
+}
+
 
     template <typename CharT>
     std::basic_ostream<CharT>& blink(std::basic_ostream<CharT>& stream)
