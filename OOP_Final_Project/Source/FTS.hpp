@@ -31,7 +31,7 @@ avtivities :
          (moderate exercise/sports 3-5 days/week)BMR x 1.55
           (hard exercise/sports 6-7 days a week)BMR x 1.725
           (very hard exercise/sports & physical job or 2x training)BMR x 1.9
-added '  abdikrin
+
 */
 class Person
 {
@@ -74,8 +74,17 @@ class Activity:public Person
     public:
         void setAct_type();
         double setBMR();
+        void GetPersonData();
         
 };
+void Activity::GetPersonData()
+{
+    cout<<"|Age : "<<Age<<"|"<<endl;
+    cout<<"|Height : "<<hight<<"|"<<endl;
+    cout<<"|Weight : "<<weight<<"|"<<endl;
+
+};
+
 double Activity::setBMR()
 {
    do
@@ -147,7 +156,7 @@ void Activity::setAct_type()
 class FitnessTracker
 {
     private:
-        string user_type;
+        int user_type;
         int user_id;
         string Username;
         Activity activities;
@@ -156,14 +165,60 @@ class FitnessTracker
     public:
         void setDtails();
         void Register();
+        void GetDetails();
+        char SetType();
+
 };
+char FitnessTracker::SetType()
+{
+    cout<<"................Login Type................"<<endl;
+    puts("1.administrator Account Type");
+    puts("2.User Account Type");
+    cout<<"Choose (1) Or (2) : ";
+    cin.clear();
+    cin>>user_type;
+    while(user_type != 1 && user_type != 2)
+    {
+        cout<<"     Error!!   "<<endl;
+        cout<<"("<<user_type<<")"<<"Not in the List "<<endl;
+        puts("1.administrator Account Type");
+        puts("2.User Account Type");
+        cout<<"Choose (1) Or (2) : ";
+        cin.clear();
+        cin>>user_type;
+    }
+    switch (user_type)//here is when we deciding b/w user or admin
+    {
+    case 1:
+        return 'A';
+        break;
+    case 2:
+        return 'U';
+        break;
+    
+    default:
+        cout<<"Something Went Wrong!!"<<endl;
+        break;
+    }
+};
+
 void FitnessTracker::setDtails()
 {
-
+    activities.setBMR();
+    
 };
 void FitnessTracker::Register()
 {
     cout<<"................User Account Creation................"<<endl;
     cout<<"Enter UserName : ";
+    getline(cin,Username);
+    cout<<"User "<<Username<<"Successfuly Created"<<endl;
+};
+void FitnessTracker::GetDetails()
+{
+    cout<<"...............User Data............... "<<endl;
+    cout<<"|User Name : "<<Username<<"|"<<endl;
+    cout<<"|User ID : "<<user_id<<"|"<<endl;
+    activities.GetPersonData();
     
 };

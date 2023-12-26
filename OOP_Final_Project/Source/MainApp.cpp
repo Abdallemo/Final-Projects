@@ -28,7 +28,8 @@ participants: Fahad , Abdikarin , marian & abdullahi
 */
 int main(){
 
-
+FitnessTracker fts;
+fts.SetType();
 
     return 0;
 }
