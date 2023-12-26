@@ -161,7 +161,7 @@ class FitnessTracker
     public:
         string Username;      
         void setDtails();
-        void Register();
+        void Register(string USr);
         void GetDetails();
         char SetType();
 
@@ -204,12 +204,19 @@ void FitnessTracker::setDtails()
     activities.setBMR();
     
 };
-void FitnessTracker::Register()
+void FitnessTracker::Register(string USr)
 {
     cout<<"................User Account Creation................"<<endl;
     cout<<"Enter UserName : ";
     getline(cin,Username);
-    cout<<"User "<<Username<<"Successfuly Created"<<endl;
+    if(Username != USr)
+    {
+        cout<<"User "<<Username<<"Successfuly Created"<<endl;
+        
+    }else
+    {
+        cout<<"User "<< USr <<" Already exist"<<endl;
+    }
 };
 void FitnessTracker::GetDetails()
 {

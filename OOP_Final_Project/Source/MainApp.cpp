@@ -1,8 +1,7 @@
 #include "FTS.hpp"
 #include <fstream>  
-#include <ctime>
-#include <cstdlib>
-#include <iomanip>
+#include <Windows.h>
+#include "animation.hpp"
 using namespace std;
 
 /*
@@ -30,10 +29,7 @@ participants: Fahad , Abdikarin , marian & abdullahi
 
 int main(){
 
-
-
-
-puts("Juts Working");
+progressbar();
 
 
     return 0;

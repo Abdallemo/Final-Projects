@@ -96,3 +96,7 @@ void FtsList::Delete(string Targetusr)
     
     
 }
+void FtsList::generateReport()
+{
+    
+};
