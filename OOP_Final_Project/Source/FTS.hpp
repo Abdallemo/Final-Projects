@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
+#include<cstdlib>
 using namespace std;
+#define SZ 40
 /*
 +---------------------+        +---------------------+
 |   FitnessTracker   |        |      Activity       |
@@ -64,6 +66,8 @@ class Person
             cin>>hight;
         }
 };
+
+//____________________________________________________________________________________________________________
 class Activity:public Person
 {
     private:
@@ -71,21 +75,32 @@ class Activity:public Person
         double Calories;
         int Gender; //1 for men 2 for women|
         double BMR;
+        char alphabet[SZ]={"ABCDEFGHIJKLMNO"};
+
     public:
+        string Uniqueid;
         void setAct_type();
         double setBMR();
+        void GetBMR();
         void GetPersonData();
-        
-        
+        string generateUniqueID();
+
 };
+
 void Activity::GetPersonData()
 {
     cout<<"|Age : "<<Age<<"|"<<endl;
     cout<<"|Height : "<<hight<<"|"<<endl;
     cout<<"|Weight : "<<weight<<"|"<<endl;
-    
-
 };
+
+string Activity::generateUniqueID()//this is for Random creation Number 
+{
+    static int counter = 10;
+    char randomAlphabet = alphabet[std::rand() % (sizeof(alphabet) - 1)];
+    int randomNumber = counter++;
+    return std::string(1, randomAlphabet) + std::to_string(randomNumber);
+}
 
 double Activity::setBMR()
 {
@@ -116,18 +131,24 @@ double Activity::setBMR()
     switch (act_type)
     {
     case 1:
+    
+        Activity::Uniqueid = string(1, alphabet[0]) + generateUniqueID();//if user chosed act1 his ID will start from A
         return Calories = BMR*1.2; //act1
         break;
     case 2:
+        Activity::Uniqueid = string(1, alphabet[2]) + generateUniqueID();//if user chosed act2 his ID will start from C
         return Calories = BMR*1.375;//act2
         break;
     case 3:
+        Activity::Uniqueid = string(1, alphabet[5]) + generateUniqueID();//if user chosed act3 his ID will start from F
         return Calories = BMR*1.55;//act3
         break;
     case 4:
+        Activity::Uniqueid = string(1, alphabet[10]) + generateUniqueID();//if user chosed act4 his ID will start from K
         return Calories = BMR*1.725;//act4
         break;
     case 5:
+        Activity::Uniqueid = string(1, alphabet[7]) + generateUniqueID();//same as other
         return Calories = BMR*1.9;//act5
         break;
     default:
@@ -135,7 +156,6 @@ double Activity::setBMR()
         break;
     }
     
-
 };
 void Activity::setAct_type()
 {
@@ -150,12 +170,22 @@ void Activity::setAct_type()
     cin>>act_type;
 
 };
+void Activity::GetBMR()
+{
+    cout<<"|User BMR : "<<BMR<<"|"<<endl;
+
+};
+
+
+
+//____________________________________________________________________________________________________________
+
 
 class FitnessTracker
 {
     private:
         int user_type;
-        int user_id;
+        string user_id;
         Activity activities;
         
     public:
@@ -164,7 +194,7 @@ class FitnessTracker
         void Register(string USr);
         void GetDetails();
         char SetType();
-
+        
 };
 char FitnessTracker::SetType()
 {
@@ -202,7 +232,6 @@ char FitnessTracker::SetType()
 void FitnessTracker::setDtails()
 {
     activities.setBMR();
-    
 };
 void FitnessTracker::Register(string USr)
 {
@@ -211,6 +240,7 @@ void FitnessTracker::Register(string USr)
     getline(cin,Username);
     if(Username != USr)
     {
+        Username = USr;
         cout<<"User "<<Username<<"Successfuly Created"<<endl;
         
     }else
@@ -220,9 +250,12 @@ void FitnessTracker::Register(string USr)
 };
 void FitnessTracker::GetDetails()
 {
+
     cout<<"...............User Data............... "<<endl;
-    cout<<"|User Name : "<<Username<<"|"<<endl;
-    cout<<"|User ID : "<<user_id<<"|"<<endl;
+    cout<<"|Username : @"<<Username<<"|"<<endl;
+    cout<<"|User Id : "<<activities.Uniqueid<<"|"<<endl;
     activities.GetPersonData();
+
     
 };
+

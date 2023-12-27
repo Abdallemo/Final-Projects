@@ -98,5 +98,17 @@ void FtsList::Delete(string Targetusr)
 }
 void FtsList::generateReport()
 {
-    
+    FtsRecord *temp = new FtsRecord;
+    if (temp==nullptr)
+    {
+        cout<<"Nothing To Generate Here"<<endl;
+
+    }else
+    {
+        while(temp!=nullptr)
+        {
+            
+        }
+    }
+
 };

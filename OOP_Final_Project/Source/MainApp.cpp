@@ -2,6 +2,7 @@
 #include <fstream>  
 #include <Windows.h>
 #include "animation.hpp"
+#include <ctime>
 using namespace std;
 
 /*
@@ -26,11 +27,9 @@ participants: Fahad , Abdikarin , marian & abdullahi
                     reading from a file Exmaple : ifstream MyReadFile("filename.txt"); Reff: https://rb.gy/eh3dqi
 
 */
-
 int main(){
-
+srand(static_cast<unsigned int>(time(nullptr)));
 progressbar();
-
 
     return 0;
 }
