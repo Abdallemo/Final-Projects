@@ -4,28 +4,33 @@
 using namespace std;
 #define SZ 40
 /*
-+---------------------+        +---------------------+
-|   FitnessTracker   |        |      Activity       |
-+---------------------+        +---------------------+
-| - user_type: string |        | - act_type: int      |
-| - user_id: int      |        | - Calories: double  |
-| - Username: string  |        | - Gender: int        |
-| - activities        |◄-------| - BMR: double        |
-+---------------------+        +---------------------+
-   |                           | + setAct_type(): void|
-   |                           | + setBMR(): double   |
-   |                           |
-   |                           |
-   |                           |
-   V                           V
-+---------------------+
-|       Person        |
-+---------------------+
-| # Age: int           |
-| # hight: int         |
-| # weight: int        |
-| + SetPerson(): void  |
-+---------------------+
++---------------------+        +---------------------+         +---------------------+
+|   FitnessTracker   |        |      Activity       |         |       Person        |
++---------------------+        +---------------------+         +---------------------+
+| - user_type: int    |        | - act_type: int      |         | - Age: int           |
+| - user_id: string   |        | - Calories: double  |         | - hight: int         |
+| - Username: string  |◄-------| - Gender: int        |         | - weight: int        |
+| - activities        |        | - BMR: double        |         +---------------------+
++---------------------+        +---------------------+                 |
+   |                           | + setAct_type(): void|                 |
+   |                           | + setBMR(): double   |                 |
+   |                           | + GetBMR(): void     |                 |
+   |                           | + GetPersonData(): void                 |
+   |                           | + generateUniqueID(): string            |
+   V                           V                                        |
++---------------------+        +---------------------+                 |
+|       Person        |        |      FitnessTracker  |                 |
++---------------------+        +---------------------+                 |
+| + SetPerson(): void |        | - user_type: int    |                 |
++---------------------+        | - user_id: string   |                 |
+                               | - activities: Activity|                 |
+                               +---------------------+                 |
+                               | + SetType(): char    |                 |
+                               | + setDtails(): void  |                 |
+                               | + Register(string): void              |
+                               | + GetDetails(): void |                 |
+                               +---------------------+ 
+
 
 avtivities :
          (little or no exercise) BMR x 1.2
