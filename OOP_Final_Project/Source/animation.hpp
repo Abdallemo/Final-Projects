@@ -2,8 +2,6 @@
 #include <Windows.h>
 using namespace std;
 
-
-
 void progressbar() 
 {
     system("COLOR 0e");

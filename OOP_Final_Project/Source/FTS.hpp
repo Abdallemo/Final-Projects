@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include<cstdlib>
 using namespace std;
@@ -70,12 +71,25 @@ class Person
             cout<<"Enter Your Hight : ";
             cin>>hight;
         }
+        //getterts :)
+        int getAge()const
+        {
+            return Age;
+        }
+        int getHeight()const
+        {
+            return hight;
+        }
+        int getWeight()const
+        {
+            return weight;
+        }
 };
 
 //____________________________________________________________________________________________________________
 class Activity:public Person
 {
-    private:
+    protected:
         int act_type;
         double Calories;
         int Gender; //1 for men 2 for women|
@@ -86,11 +100,25 @@ class Activity:public Person
         string Uniqueid;
         void setAct_type();
         double setBMR();
-        void GetBMR();
+        double GetBMR()const;
         void GetPersonData();
         string generateUniqueID();
+        double getCalories()const;
+        string getGender();
 
 };
+string Activity::getGender()
+{
+    switch(Gender)
+    {
+        case 1:
+            return "Male";
+            break;
+        case 2:
+            return "Female";
+            break;
+    }
+}
 
 void Activity::GetPersonData()
 {
@@ -102,9 +130,9 @@ void Activity::GetPersonData()
 string Activity::generateUniqueID()//this is for Random creation Number 
 {
     static int counter = 10;
-    char randomAlphabet = alphabet[std::rand() % (sizeof(alphabet) - 1)];
+    char randomAlphabet = alphabet[rand() % (sizeof(alphabet) - 1)];
     int randomNumber = counter++;
-    return std::string(1, randomAlphabet) + std::to_string(randomNumber);
+    return string(1, randomAlphabet) + to_string(randomNumber);
 }
 
 double Activity::setBMR()
@@ -127,9 +155,9 @@ double Activity::setBMR()
             SetPerson();
             BMR = 10*weight+(6.25*hight)-(5*Age)+161; //for women
             break;
-            default:
-                cout<<"Something Went Wrong):"<<endl;
-                break;
+        default:
+            cout<<"Something Went Wrong):"<<endl;
+            break;
     }
 
     setAct_type();
@@ -175,12 +203,14 @@ void Activity::setAct_type()
     cin>>act_type;
 
 };
-void Activity::GetBMR()
+double Activity::GetBMR()const
 {
-    cout<<"|User BMR : "<<BMR<<"|"<<endl;
-
+    return BMR;
 };
-
+double Activity::getCalories()const
+{
+    return Calories;
+}
 
 
 //____________________________________________________________________________________________________________
@@ -191,14 +221,15 @@ class FitnessTracker
     private:
         int user_type;
         string user_id;
-        Activity activities;
         
     public:
+        Activity activities;
         string Username;      
         void setDtails();
-        void Register(string USr);
+        void Register();
         void GetDetails();
         char SetType();
+        void generateReport();// :) 
         
 };
 char FitnessTracker::SetType()
@@ -238,20 +269,11 @@ void FitnessTracker::setDtails()
 {
     activities.setBMR();
 };
-void FitnessTracker::Register(string USr)
+void FitnessTracker::Register()
 {
     cout<<"................User Account Creation................"<<endl;
     cout<<"Enter UserName : ";
     getline(cin,Username);
-    if(Username != USr)
-    {
-        Username = USr;
-        cout<<"User "<<Username<<"Successfuly Created"<<endl;
-        
-    }else
-    {
-        cout<<"User "<< USr <<" Already exist"<<endl;
-    }
 };
 void FitnessTracker::GetDetails()
 {
@@ -260,7 +282,27 @@ void FitnessTracker::GetDetails()
     cout<<"|Username : @"<<Username<<"|"<<endl;
     cout<<"|User Id : "<<activities.Uniqueid<<"|"<<endl;
     activities.GetPersonData();
-
+    cout<<"|User BMR : "<<activities.GetBMR()<<"|"<<endl;
+    cout<<"|Calories Burned : "<<activities.getCalories()<<"|"<<endl;
     
 };
 
+
+void FitnessTracker::generateReport()
+{
+    fstream myFile;
+    myFile.open("Report.txt", ios::app);
+    if(myFile.is_open())
+    {
+        myFile <<">>>>>>>>>>>>>>>>>>>>>...........<<<<<<<<<<<<<<<<<<<<<\n";
+        myFile << "Username: @" << Username<<"\n";
+        myFile << "User ID: " <<  activities.Uniqueid<<"\n";
+        myFile << "Age: " <<activities.getAge()<<"\n";
+        myFile << "Height: " <<activities.getHeight()<<"\n";
+        myFile << "Weight: " <<activities.getWeight()<<"\n";
+        myFile << "User BMR: "<<activities.GetBMR()<<"\n";
+        myFile << "Calories: "<<activities.getCalories()<<"\n";
+        myFile <<"....................................................\n";
+    }
+
+}

@@ -2,7 +2,7 @@
 
 /*
     *methods needed in this **
-    Search()
+    //Search()
     Display()
     //Update()
     //Delete()
@@ -24,7 +24,8 @@ class FtsList
     public:
         void insert(FitnessTracker newtrckerapp);//LIFO Type
         void Delete(string Targetusr);
-        void Search();
+        void Search(string usr);
+        void Update(string TrgtUsr);
         void sort();
         void Update(string Targetusr ,string);
         void Display();
@@ -95,10 +96,36 @@ void FtsList::Delete(string Targetusr)
     }
     
     
-}
+};
+ void FtsList::Update(string TrgtUsr)
+ {
+    if(Isempty()==10)
+    {
+        cout<<"Nothing To Update Here"<<endl;
+
+    }
+    FtsRecord *Curr = head;
+    while(Curr != nullptr&&Curr->trckerapp.Username!=TrgtUsr)
+    {
+        Curr= Curr->Nextptr;
+
+    }
+    if(Curr!=nullptr)
+    {
+        cout<<"Displaying Existing Data For "<<TrgtUsr<<" :"<<endl;
+        Curr->trckerapp.GetDetails();
+
+        //time to update
+        cout<<".....................Update Field....................."<<endl;
+        Curr->trckerapp.setDtails();
+        
+    }
+ }
+
+
 void FtsList::generateReport()
 {
-    FtsRecord *temp = new FtsRecord;
+    FtsRecord *temp = head;
     if (temp==nullptr)
     {
         cout<<"Nothing To Generate Here"<<endl;
@@ -107,8 +134,56 @@ void FtsList::generateReport()
     {
         while(temp!=nullptr)
         {
-            
+            temp->trckerapp.generateReport();
+            temp->Nextptr;
         }
     }
 
 };
+void FtsList::Display()
+{
+    FtsRecord *Temp = head;
+    if(Temp==nullptr)
+    {
+        cout<<"Nothing To Generate Here"<<endl;
+
+    }else
+    {
+        while (Temp != nullptr)
+        {
+            Temp->trckerapp.GetDetails();
+            Temp->Nextptr;
+
+        }
+        
+    }
+}
+
+void FtsList::Search(string usr)
+{
+    FtsRecord *Temp = head;
+    if(Temp==nullptr)
+    {
+        cout<<"No Data Entered Yet!"<<endl;
+
+    }else
+    {
+        while (Temp!=nullptr&&Temp->trckerapp.Username != usr)
+        {
+            Temp = Temp->Nextptr;
+        }
+        if(Temp != nullptr)
+        {
+            cout<<"------------- UserName :"<<usr <<"found successfully-------------"<<endl;
+            Temp->trckerapp.GetDetails();
+            cout<<"....................................................................."<<endl;
+        }else
+        {
+            cout<<"\t\t!"<<endl;
+            cout<<"UseName "<<usr<<" Not Found"<<endl;
+
+        }
+        
+    }
+
+}
