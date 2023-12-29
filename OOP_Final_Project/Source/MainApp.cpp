@@ -1,7 +1,8 @@
-#include "FTS.hpp"
+
 #include <fstream>  
 #include <Windows.h>
 #include "animation.hpp"
+#include "Linklist(FTS).hpp"
 #include <ctime>
 using namespace std;
 
@@ -27,9 +28,69 @@ participants: Fahad , Abdikarin , marian & abdullahi
                     reading from a file Exmaple : ifstream MyReadFile("filename.txt"); Reff: https://rb.gy/eh3dqi
 
 */
-int main(){
-srand(static_cast<unsigned int>(time(nullptr)));
-progressbar();
+int main()
+{
+    srand(static_cast<unsigned int>(time(nullptr)));
+    FtsList FitnesList;
+    FitnessTracker FTStracker;
+ int ch;
+    
+    cout << "1. Start the App\n2. Exit the App" << endl;
+    cout << "Enter (1) or (2): ";
+    cin.clear();
+    cin >> ch;
+
+    while (ch != 2) {
+        switch (FTStracker.SetType()) {
+            case 'A':
+                cout << "Admin Type" << endl;
+                int adminChoice;
+                do {
+                    cout << "1. Set Your Information\t2. Display All Users Info" << endl;
+                    cout << "3. Update Existing User info\t4. Generate text Base for All user info" << endl;
+                    cout << "5. Delete Existing User Data\t6. Exit" << endl;
+                    cout << "Enter (1-6): ";
+                    cin.clear();
+                    cin >> adminChoice;
+
+                    switch (adminChoice) {
+                        case 1:
+                            
+                            break;
+                        case 2:
+                            
+                            break;
+                        case 3:
+                            
+                            break;
+                        case 4:
+                            
+                            break;
+                        case 5:
+                            
+                            break;
+                        case 6:
+                            
+                            break;
+                        default:
+                            cout << "Invalid choice. Try again." << endl;
+                            break;
+                    }
+                } while (adminChoice != 6);
+                break;
+            case 'U':
+                cout << "User Type" << endl;
+                break;
+            default:
+                cout << "Error. Try Again" << endl;
+                break;
+        }
+
+        cout << "1. Start the App\n2. Exit the App" << endl;
+        cout << "Enter (1) or (2): ";
+        cin.clear();
+        cin >> ch;
+    }
 
     return 0;
 }

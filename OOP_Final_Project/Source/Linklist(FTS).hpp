@@ -1,14 +1,17 @@
 #include "FTS.hpp"
 #include <Windows.h>
+#include  <list>
+#include <algorithm>
+
 
 /*
     *methods needed in this **
     //Search()
-    Display()
+    //Display()
     //Update()
     //Delete()
     //Add()
-    generateReport()
+    //generateReport()
 
 */
 
@@ -48,8 +51,29 @@ int FtsList::Isempty()
         return 1;
     }
     
-}
-
+};
+void FtsList::sort()
+{
+    if(Isempty()==0)
+    {
+        return;//nothing..
+    }
+    list<FitnessTracker> FTRecords; //so It's a container that can hold instances of FitnessTracker 
+    FtsRecord *Temp = head;
+    while (Temp!=nullptr)
+    {
+        FTRecords.push_back(Temp->trckerapp);
+        Temp = Temp->Nextptr;
+    }
+  FTRecords.sort([](const FitnessTracker &a, const FitnessTracker &b) {
+        return a.Username < b.Username;
+    });
+    for (auto& record : FTRecords)
+    {
+        record.GetDetails();
+    }
+    
+};
 void FtsList::insert(FitnessTracker newtrckerapp)
 {
     FtsRecord *newNodeptr = new FtsRecord;
@@ -141,7 +165,7 @@ void FtsList::generateReport()
         while(temp!=nullptr)
         {
             temp->trckerapp.generateReport();
-            temp->Nextptr;
+            temp = temp->Nextptr;
         }
     }
 
@@ -158,7 +182,7 @@ void FtsList::Display()
         while (Temp != nullptr)
         {
             Temp->trckerapp.GetDetails();
-            Temp->Nextptr;
+            Temp=Temp->Nextptr;
 
         }
         

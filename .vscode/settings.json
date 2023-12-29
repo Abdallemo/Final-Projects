@@ -59,5 +59,8 @@
         "stop_token": "cpp",
         "thread": "cpp",
         "vector": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "ABCDEFGHIJKLMNO"
+    ]
 }
