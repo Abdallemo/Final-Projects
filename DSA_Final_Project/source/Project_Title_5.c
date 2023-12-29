@@ -8,7 +8,7 @@
     Subcriteria:
         Syntax
         Logical
-        mpllementation/process
+        implementation/process
         3 different input validation
         User-friendly interface
         Correct Input
@@ -31,6 +31,8 @@ void Display_Info(Thesis_RecordPtr Current_head);
 int IsEmpty(Thesis_RecordPtr head);
 void UpdateRecord(Thesis_RecordPtr *head,char Target_ID[NID],char NewData[NSize],int fieldToUpdate);//usecase to Update
 void search(Thesis_RecordPtr *head,char Target_ID[NID]);
+void bubbleSortByName(Thesis_RecordPtr *head);
+void swapNodes(Thesis_RecordPtr a, Thesis_RecordPtr b);
 void Instruction();
 void getInput(const char *prompt, char *input, int max_length);
 void convertToUpper(char *str);
@@ -162,6 +164,8 @@ int main()
                 search(&strPtr,StudentID);
             break;    
             case 5:
+                bubbleSortByName(&strPtr);
+                printf("-----------------Displaying All Student Data Recorded-----------------\n");
                 Display_Info(strPtr);
             break;    
             case 6:
@@ -342,7 +346,6 @@ void Display_Info(Thesis_RecordPtr Current_head)
         while (Current_head != NULL)
         {
             printf("\n");
-            printf("-----------------Displaying All Student Data Recorded-----------------\n");
             printf("Thesis ID: %s\n", Current_head->Records.Thesis_ID);
             printf("Student Name: %s\n", Current_head->Records.Student_Name);
             printf("Student ID: %s\n", Current_head->Records.Student_ID);
@@ -364,4 +367,35 @@ void Display_Info(Thesis_RecordPtr Current_head)
 int IsEmpty(Thesis_RecordPtr head)
 {
      return head == NULL;
+}
+void bubbleSortByName(Thesis_RecordPtr *head) {
+    int swapped;
+    Thesis_RecordPtr current;
+    Thesis_RecordPtr last = NULL;
+
+    // Base case: empty or single-node list
+    if (*head == NULL || (*head)->next == NULL) {
+        return;
+    }
+
+    do {
+        swapped = 0;
+        current = *head;
+
+        while (current->next != last) {
+            // Compare adjacent nodes and swap if needed based on Student_Name
+            if (strcmp(current->Records.Student_Name, current->next->Records.Student_Name) > 0) {
+                swapNodes(current, current->next);
+                swapped = 1;
+            }
+            current = current->next;
+        }
+        last = current;
+
+    } while (swapped);
+}
+void swapNodes(Thesis_RecordPtr a, Thesis_RecordPtr b) {
+    StudentRecord temp = a->Records;
+    a->Records = b->Records;
+    b->Records = temp;
 }

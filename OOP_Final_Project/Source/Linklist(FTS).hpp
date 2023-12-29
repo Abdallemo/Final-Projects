@@ -1,4 +1,5 @@
 #include "FTS.hpp"
+#include <Windows.h>
 
 /*
     *methods needed in this **
@@ -27,10 +28,10 @@ class FtsList
         void Search(string usr);
         void Update(string TrgtUsr);
         void sort();
-        void Update(string Targetusr ,string);
         void Display();
         void generateReport();
         int Isempty();
+        void progressbar();
 
 FtsList()
 {
@@ -118,9 +119,14 @@ void FtsList::Delete(string Targetusr)
         //time to update
         cout<<".....................Update Field....................."<<endl;
         Curr->trckerapp.setDtails();
-        
+        progressbar();
+        cout << "User " << TrgtUsr << " updated successfully." << endl;
+
+    }else
+    {
+        cout<<"User with Name "<<TrgtUsr<< " Didn't Found.."<<endl;
     }
- }
+ };
 
 
 void FtsList::generateReport()
@@ -186,4 +192,31 @@ void FtsList::Search(string usr)
         
     }
 
-}
+};
+void FtsList::progressbar()
+{
+    system("COLOR 0e");
+    system("cls");
+    SetConsoleCP(437);
+    SetConsoleOutputCP(437);
+
+    int bar1, bar2;
+    bar1 = 177;
+    bar2 = 219;
+
+    cout << "\n\n\n\t\t\t\tUpdating...";
+    cout << "\n\n\n\t\t\t\t";
+
+    for (int i = 0; i < 25; i++)
+        cout << (char)bar1;
+
+    cout << "\r";
+    cout << "\t\t\t\t";
+
+    for (int i = 0; i < 25; i++) {
+        cout << (char)bar2;
+        Sleep(50);
+    }
+
+    system("cls");
+};
