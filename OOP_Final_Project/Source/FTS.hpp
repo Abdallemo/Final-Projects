@@ -3,6 +3,8 @@
 #include <string>
 #include <limits>
 #include<cstdlib>
+#include "Linklist(FTS).hpp"
+#include<bits/stdc++.h>//for lowecse the usename so that we can sort them 
 using namespace std;
 #define SZ 40
 /*
@@ -53,11 +55,14 @@ class Person
         {
             cout<<"Enter Your Age : ";
             cin>>Age;
+            cin.ignore();
             while (Age <=0)
             {
                 cout<<"Invalid input!"<<endl;
                 cout<<"Enter Your Age : ";
+
                 cin>>Age;
+                cin.ignore();
             }
             
             cout<<"Enter Your Weight : ";
@@ -66,11 +71,14 @@ class Person
             {
                 cout<<"Not a Normal Weight Try Again"<<endl;
                 cout<<"Enter Your Weight : ";
+
                 cin>>weight;
+                cin.ignore();
             }
             
             cout<<"Enter Your Hight : ";
             cin>>hight;
+            cin.ignore();
         }
         //getterts :)
         int getAge()const
@@ -168,23 +176,27 @@ double Activity::setBMR()
     switch (act_type)
     {
     case 1:
-    
+        cin.clear();
         Activity::Uniqueid = string(1, alphabet[0]) + generateUniqueID();//if user chosed act1 his ID will start from A
         return Calories = BMR*1.2; //act1
         break;
     case 2:
+        cin.clear();
         Activity::Uniqueid = string(1, alphabet[2]) + generateUniqueID();//if user chosed act2 his ID will start from C
         return Calories = BMR*1.375;//act2
         break;
     case 3:
+        cin.clear();
         Activity::Uniqueid = string(1, alphabet[5]) + generateUniqueID();//if user chosed act3 his ID will start from F
         return Calories = BMR*1.55;//act3
         break;
     case 4:
+        cin.clear();
         Activity::Uniqueid = string(1, alphabet[10]) + generateUniqueID();//if user chosed act4 his ID will start from K
         return Calories = BMR*1.725;//act4
         break;
     case 5:
+        cin.clear();
         Activity::Uniqueid = string(1, alphabet[7]) + generateUniqueID();//same as other
         return Calories = BMR*1.9;//act5
         break;
@@ -203,8 +215,8 @@ void Activity::setAct_type()
     puts("4.very active (hard exercise/sports 6-7 days a week) :");
     puts("5.extra active (very hard exercise/sports & physical job or 2x training)");
     cout<<"Choose (1-5) : ";
-    cin.clear();
     cin>>act_type;
+    cin.ignore();
 
 };
 double Activity::GetBMR()const
@@ -242,8 +254,8 @@ char FitnessTracker::SetType()
     puts("1.administrator Account Type");
     puts("2.User Account Type");
     cout<<"Choose (1) Or (2) : ";
-    cin.clear();
     cin>>user_type;
+    cin.ignore();
     while(user_type != 1 && user_type != 2)
     {
         cout<<"     Error!!   "<<endl;
@@ -251,8 +263,8 @@ char FitnessTracker::SetType()
         puts("1.administrator Account Type");
         puts("2.User Account Type");
         cout<<"Choose (1) Or (2) : ";
-        cin.clear();
         cin>>user_type;
+        cin.ignore();
     }
     switch (user_type)//here is when we deciding b/w user or admin
     {
@@ -279,6 +291,9 @@ void FitnessTracker::Register()
     cout<<"Enter UserName : ";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     getline(cin,Username);
+    transform(Username.begin(), Username.end(), Username.begin(), ::tolower); //ref. https://en.cppreference.com/w/cpp/string/wide/towlower
+    //?sorting is alphapetic sensitive so we convert username to lowercase
+
 };
 void FitnessTracker::GetDetails()
 {

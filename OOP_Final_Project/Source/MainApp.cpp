@@ -100,22 +100,22 @@ int main()
             case 'U':
                 int user_Choice;
                 
-                do
-                {
-                    system("COLOR 6F");
-                    cout << "1. Set Your Information \t\t2. Delete Your Information" << endl;
-                    cin.clear();
-                    cin>>user_Choice;
-                    switch (user_Choice)
-                    {
-                    case 1:
-                        FTStracker.Register();
-                        break;
+                // do
+                // {
+                //     system("COLOR 6F");
+                //     cout << "1. Set Your Information \t\t2. Delete Your Information" << endl;
+                //     cin.clear();
+                //     cin>>user_Choice;
+                //     switch (user_Choice)
+                //     {
+                //     case 1:
+                //         FTStracker.Register();
+                //         break;
                     
-                    default:
-                        break;
-                    }
-                } while (use_facet !=3 );
+                //     default:
+                //         break;
+                //     }
+                // } while (use_facet !=3);
                 
                
                 cout << "User Type" << endl;

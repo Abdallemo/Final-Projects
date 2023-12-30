@@ -58,7 +58,9 @@
         "sstream": "cpp",
         "stop_token": "cpp",
         "thread": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "algorithm": "cpp",
+        "list": "cpp"
     },
     "cSpell.words": [
         "ABCDEFGHIJKLMNO"

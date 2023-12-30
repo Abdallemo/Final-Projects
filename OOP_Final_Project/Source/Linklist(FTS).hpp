@@ -52,12 +52,12 @@ int FtsList::Isempty()
     }
     
 };
-void FtsList::sort()
+void FtsList::sort()//reff= https://youtu.be/IgLc2z_6qPg also we  used sort and algorithum librr ✨
 {
     if(Isempty()==0)
     {
         cout<<"There Is No Data Yet.."<<endl;
-        return;//nothing..
+        return;//nothing.. 🗿
     }
     list<FitnessTracker> FTRecords; //so It's a container that can hold instances of FitnessTracker 
     FtsRecord *Temp = head;
@@ -229,14 +229,14 @@ void FtsList::progressbar()
     bar1 = 177;
     bar2 = 219;
 
-    cout << "\n\n\n\t\t\t\tUpdating...";
-    cout << "\n\n\n\t\t\t\t";
+    cout << "\n\n\n\n\t\t\t\t\tUpdating...";
+    cout << "\n\n\n\n\t\t\t\t\t";
 
     for (int i = 0; i < 25; i++)
         cout << (char)bar1;
 
     cout << "\r";
-    cout << "\t\t\t\t";
+    cout << "\t\t\t\t\t";
 
     for (int i = 0; i < 25; i++) {
         cout << (char)bar2;
