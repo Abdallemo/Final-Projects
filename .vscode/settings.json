@@ -62,5 +62,6 @@
     },
     "cSpell.words": [
         "ABCDEFGHIJKLMNO"
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "disabled"
 }

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <limits>
 #include<cstdlib>
 using namespace std;
 #define SZ 40
@@ -140,7 +141,9 @@ double Activity::setBMR()
    do
     {
         cout << "..Choose Your Gender.." << endl;
-        puts("1. Male\t\t2.Female\n");
+        cout<<"1. Male\t\t2.Female"<<endl;
+        cout<<"Enter Your Choice : ";
+        cin.clear();
         cin >> Gender;
     } while (Gender != 1 && Gender != 2);
 
@@ -152,14 +155,15 @@ double Activity::setBMR()
             BMR = 10*weight+(6.25*hight)-(5*Age)+5;//for men
             break;
         case 2:
+            cout<<"..........BMR Calculation.........."<<endl;
             SetPerson();
-            BMR = 10*weight+(6.25*hight)-(5*Age)+161; //for women
+            BMR = 10*weight+(6.25*hight)-(5*Age)-161; //for women
             break;
         default:
             cout<<"Something Went Wrong):"<<endl;
             break;
     }
-
+    cout<<endl;
     setAct_type();
     switch (act_type)
     {
@@ -273,20 +277,21 @@ void FitnessTracker::Register()
 {
     cout<<"................User Account Creation................"<<endl;
     cout<<"Enter UserName : ";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     getline(cin,Username);
 };
 void FitnessTracker::GetDetails()
 {
 
     cout<<"...............User Data............... "<<endl;
-    cout<<"|Username : @"<<Username<<"|"<<endl;
-    cout<<"|User Id : "<<activities.Uniqueid<<"|"<<endl;
+    cout<<"|Username : @"<<Username<<""<<endl;
+    cout<<"|User Id : "<<activities.Uniqueid<<""<<endl;
     activities.GetPersonData();
-    cout<<"|User BMR : "<<activities.GetBMR()<<"|"<<endl;
-    cout<<"|Calories Burned : "<<activities.getCalories()<<"|"<<endl;
+    cout<<"|User BMR : "<<activities.GetBMR()<<""<<endl;
+    cout<<"|Calories Burned : "<<activities.getCalories()<<""<<endl;
+    cout<<"|______________________________________________"<<endl;
     
 };
-
 
 void FitnessTracker::generateReport()
 {
@@ -302,7 +307,7 @@ void FitnessTracker::generateReport()
         myFile << "Weight: " <<activities.getWeight()<<"\n";
         myFile << "User BMR: "<<activities.GetBMR()<<"\n";
         myFile << "Calories: "<<activities.getCalories()<<"\n";
-        myFile <<"....................................................\n";
+        myFile <<".....................................................\n";
     }
 
 }

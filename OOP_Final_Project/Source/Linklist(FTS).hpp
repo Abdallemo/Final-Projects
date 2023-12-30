@@ -11,7 +11,7 @@
     //Update()
     //Delete()
     //Add()
-    //generateReport()
+    generateReport()
 
 */
 
@@ -38,7 +38,7 @@ class FtsList
 
 FtsList()
 {
-    head == nullptr; //instrcutor first runs when the main app run so it automticly first head to Null:)
+    head = nullptr; //instrcutor first runs when the main app run so it automticly first head to Null:)
 }
 };
 int FtsList::Isempty()
@@ -56,6 +56,7 @@ void FtsList::sort()
 {
     if(Isempty()==0)
     {
+        cout<<"There Is No Data Yet.."<<endl;
         return;//nothing..
     }
     list<FitnessTracker> FTRecords; //so It's a container that can hold instances of FitnessTracker 

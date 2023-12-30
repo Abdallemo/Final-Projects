@@ -34,51 +34,90 @@ int main()
     FtsList FitnesList;
     FitnessTracker FTStracker;
  int ch;
+ string Targetuser;
     
     cout << "1. Start the App\n2. Exit the App" << endl;
     cout << "Enter (1) or (2): ";
     cin.clear();
     cin >> ch;
+    progressbar();
 
     while (ch != 2) {
         switch (FTStracker.SetType()) {
             case 'A':
-                cout << "Admin Type" << endl;
                 int adminChoice;
                 do {
-                    cout << "1. Set Your Information\t2. Display All Users Info" << endl;
-                    cout << "3. Update Existing User info\t4. Generate text Base for All user info" << endl;
-                    cout << "5. Delete Existing User Data\t6. Exit" << endl;
-                    cout << "Enter (1-6): ";
+                    cout<<"\n"<<endl;
+                    system("COLOR 5E");
+                    cout << "1. Set Your Information \t\t2. Delete Existing User info" << endl;
+                    cout << "3. Update Existing User info \t 4. Generate text Base for All user info" << endl;
+                    cout << "5. Display All Users Info \t 6.Search Existing User info" << endl;
+                    cout<<"7.Exit"<<endl;
+                    cout << "Enter (1-7): ";
                     cin.clear();
                     cin >> adminChoice;
 
-                    switch (adminChoice) {
+                    switch (adminChoice) 
+                    {
                         case 1:
-                            
+
+                            FTStracker.Register();
+                            FTStracker.setDtails();
+                            FitnesList.insert(FTStracker);
                             break;
                         case 2:
-                            
+                            cout<<"Enter The UserName To delete: ";
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            getline(cin,Targetuser);
+                            FitnesList.Delete(Targetuser);
                             break;
                         case 3:
-                            
+                            cout<<"Enter The UserName To Update: ";
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            getline(cin,Targetuser);
+                            FitnesList.Update(Targetuser);
                             break;
                         case 4:
-                            
+                            FitnesList.generateReport();
                             break;
                         case 5:
-                            
+                            FitnesList.sort();
                             break;
                         case 6:
-                            
+                            cout<<"Enter The UserName To Search: ";
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            getline(cin,Targetuser);
+                            FitnesList.Search(Targetuser);
+                            break;
+                        case 7:
                             break;
                         default:
                             cout << "Invalid choice. Try again." << endl;
                             break;
                     }
-                } while (adminChoice != 6);
+                } while (adminChoice != 7);
                 break;
             case 'U':
+                int user_Choice;
+                
+                do
+                {
+                    system("COLOR 6F");
+                    cout << "1. Set Your Information \t\t2. Delete Your Information" << endl;
+                    cin.clear();
+                    cin>>user_Choice;
+                    switch (user_Choice)
+                    {
+                    case 1:
+                        FTStracker.Register();
+                        break;
+                    
+                    default:
+                        break;
+                    }
+                } while (use_facet !=3 );
+                
+               
                 cout << "User Type" << endl;
                 break;
             default:
@@ -90,6 +129,7 @@ int main()
         cout << "Enter (1) or (2): ";
         cin.clear();
         cin >> ch;
+        progressbar();
     }
 
     return 0;
