@@ -57,35 +57,35 @@ class Person
         {
             cout<<"Enter Your Age : ";
             cin>>Age;
-            cin.ignore();
-            while (Age <=0)
+            while (cin.fail()|| Age <=0)//cin.fail() is to insure misbehaviour
             {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cout<<"Invalid input!"<<endl;
                 cout<<"Enter Your Age : ";
-
                 cin>>Age;
-                cin.ignore();
             }
             
             cout<<"Enter Your Weight : ";
             cin>>weight;
-            while (weight <= 2 || weight >= 220)
+            while (cin.fail()||weight <= 2 || weight >= 220)
             {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cout<<"Not a Normal Weight Try Again"<<endl;
                 cout<<"Enter Your Weight (kg) : ";
-
                 cin>>weight;
-                cin.ignore();
             }
             
             cout<<"Enter Your Hight : ";
             cin>>hight;
-            while(hight <=43 || hight >= 251)
+            while(cin.fail()||hight <=43 || hight >= 251)
             {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cout<<hight<<" Is Invalid Height Try Again"<<endl;
                 cout<<"Enter Your Hight(cm) : ";
                 cin>>hight;
-                cin.ignore();
             }
         }
         //getterts :)
@@ -158,12 +158,13 @@ double Activity::setBMR()
 {
    do
     {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout << "..Choose Your Gender.." << endl;
         cout<<"1. Male\t\t2.Female"<<endl;
         cout<<"Enter Your Choice : ";
-        cin.clear();
         cin >> Gender;
-    } while (Gender != 1 && Gender != 2);
+    } while ((Gender != 1 && Gender != 2)||cin.fail());
 
     switch(Gender)
     {
@@ -207,6 +208,7 @@ double Activity::setBMR()
         break;
     case 5:
         cin.clear();
+        cin.ignore();
         Activity::Uniqueid = string(1, alphabet[3]) + generateUniqueID();//same as other
         return Calories = BMR*1.9;//act5
         break;
@@ -273,16 +275,17 @@ char FitnessTracker::SetType()
     puts("2.User Account Type");
     cout<<"Choose (1) Or (2) : ";
     cin>>user_type;
-    cin.ignore();
-    while(user_type != 1 && user_type != 2)
+    while(user_type != 1 && user_type != 2&&cin.fail())
     {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout<<"     Error!!   "<<endl;
         cout<<"("<<user_type<<")"<<"Not in the List "<<endl;
         puts("1.administrator Account Type");
         puts("2.User Account Type");
         cout<<"Choose (1) Or (2) : ";
         cin>>user_type;
-        cin.ignore();
+
         
     }
     switch (user_type)//here is when we deciding b/w user or admin
@@ -312,6 +315,14 @@ void FitnessTracker::Register()
     cout<<"Enter UserName : ";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     getline(cin,Username);
+    while(cin.fail()||Username.empty())
+    {
+        // cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout<<Username<<" Is Invalid Try again"<<endl;
+        cout<<"Enter UserName : ";
+        getline(cin,Username);
+    }
     transform(Username.begin(), Username.end(), Username.begin(), ::tolower); //ref. https://en.cppreference.com/w/cpp/string/wide/towlower
     //?sorting is alphapetic sensitive so we convert username to lowercase
     

@@ -41,9 +41,18 @@ int main()
     cout << "Enter (1) or (2): ";
     cin.clear();
     cin >> ch;
+    while(cin.fail()||ch<1||ch > 2)
+    {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout << "Invalid input! Enter (1) or (2): ";
+        cin >> ch;
+
+    }
     progressbar();
 
-    while (ch != 2) {
+    while (ch == 1) {
+
         switch (FTStracker.SetType()) {
             case 'A':
                 int adminChoice;
@@ -60,12 +69,21 @@ int main()
                     cin.clear();
                     cin >> adminChoice;
 
+                    while(cin.fail()||adminChoice <1 || adminChoice > 7)
+                    {
+                        cin.clear();
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        cout << "Invalid choice. Enter (1-7): ";
+                        cin >> adminChoice;
+                    }
+
                     switch (adminChoice) 
                     {
                         case 1:
 
                             FTStracker.Register();
                             FTStracker.setDtails();
+                            cin.clear();
                             cout<<"Your Auto Generted ID : "<<FTStracker.activities.Uniqueid<<endl;
                             FitnesList.insert(FTStracker);
                             break;
@@ -106,9 +124,11 @@ int main()
                 
                 do
                 {
-                     system("Color b0");
-                    cout << "1. BMR & Calories Calculation \t\t2.Exit" << endl;
-                    cout<<"chose (1)or(2) : ";
+                    system("Color b0");
+                    puts("\n\n");
+                    puts("..............................................................................");
+                    cout << "\t\t\t1. BMR & Calories Calculation \t\t2.Exit" << endl;
+                    cout << "\t\t\tchoose (1)or(2) : ";
                     cin.clear();
                     cin>>user_Choice;
                     switch (user_Choice)
@@ -133,8 +153,15 @@ int main()
 
         cout << "1. Start the App\n2. Exit the App" << endl;
         cout << "Enter (1) or (2): ";
-        cin.clear();
         cin >> ch;
+        while(cin.fail()||ch<1||ch > 2)
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Invalid input! Enter (1) or (2): ";
+            cin >> ch;
+
+        }
         progressbar();
     }
     return 0;
