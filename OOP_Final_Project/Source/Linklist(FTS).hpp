@@ -1,9 +1,7 @@
-#include "FTS.hpp"
+#include "FTS.hpp"//myclases
 #include <Windows.h>
 #include  <list>
 #include <algorithm>
-
-
 /*
     *methods needed in this **
     //Search()
@@ -245,3 +243,7 @@ void FtsList::progressbar()
 
     system("cls");
 };
+
+
+
+

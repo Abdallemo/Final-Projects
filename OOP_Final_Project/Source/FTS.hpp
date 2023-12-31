@@ -3,7 +3,9 @@
 #include <string>
 #include <limits>
 #include<cstdlib>
-#include "Linklist(FTS).hpp"
+
+
+
 #include<bits/stdc++.h>//for lowecse the usename so that we can sort them 
 using namespace std;
 #define SZ 40
@@ -238,6 +240,7 @@ class FitnessTracker
         int user_type;
         string user_id;
         
+        
     public:
         Activity activities;
         string Username;      
@@ -265,6 +268,7 @@ char FitnessTracker::SetType()
         cout<<"Choose (1) Or (2) : ";
         cin>>user_type;
         cin.ignore();
+        
     }
     switch (user_type)//here is when we deciding b/w user or admin
     {
@@ -293,6 +297,7 @@ void FitnessTracker::Register()
     getline(cin,Username);
     transform(Username.begin(), Username.end(), Username.begin(), ::tolower); //ref. https://en.cppreference.com/w/cpp/string/wide/towlower
     //?sorting is alphapetic sensitive so we convert username to lowercase
+    
 
 };
 void FitnessTracker::GetDetails()
