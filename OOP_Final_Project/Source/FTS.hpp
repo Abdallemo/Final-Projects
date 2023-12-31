@@ -298,6 +298,7 @@ char FitnessTracker::SetType()
 void FitnessTracker::setDtails()
 {
     activities.setBMR();
+    cout<<"Your Auto Generted ID : "<<activities.Uniqueid<<endl;
 };
 void FitnessTracker::Register()
 {

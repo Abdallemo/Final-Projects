@@ -114,8 +114,12 @@ int main()
                     {
                     case 1:
                         FTStracker.setDtails();
+                        puts("....................................Result....................................");
+                        puts("");
                         cout<<"Your BMR : "<<FTStracker.activities.GetBMR()<<endl;
                         cout<<"Your Calories : "<<FTStracker.activities.getCalories()<<endl;
+                        puts("..............................................................................");
+
                         break;
                     default:
                         break;
