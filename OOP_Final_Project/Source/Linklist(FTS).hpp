@@ -231,8 +231,8 @@ void FtsList::updtebar()
     bar1 = 177;
     bar2 = 219;
 
-    cout << "\n\n\n\n\t\t\t\t\tUpdating...";
-    cout << "\n\n\n\n\t\t\t\t\t";
+    cout << "\n\n\n\n\n\n\n\n\t\t\t\t\tUpdating...";
+    cout << "\n\n\n\n\n\t\t\t\t\t";
 
     for (int i = 0; i < 25; i++)
         cout << (char)bar1;

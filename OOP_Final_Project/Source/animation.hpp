@@ -15,8 +15,8 @@ void progressbar()
     bar1 = 177;
     bar2 = 219;
 
-    cout << "\n\n\n\n\t\t\t\t\tLoading...";
-    cout << "\n\n\n\n\t\t\t\t\t";
+    cout << "\n\n\n\n\n\n\n\n\t\t\t\t\tLoading...";
+    cout << "\n\n\n\n\n\t\t\t\t\t";
 
     for (int i = 0; i < 25; i++)
         cout << (char)bar1;
@@ -45,8 +45,8 @@ void deleteBar()
     bar1 = 177;
     bar2 = 219;
 
-    cout << "\n\n\n\n\t\t\t\t\tDeleting...";
-    cout << "\n\n\n\n\t\t\t\t\t";
+    cout << "\n\n\n\n\n\n\n\n\t\t\t\t\tDeleting...";
+    cout << "\n\n\n\n\n\t\t\t\t\t";
 
     for (int i = 0; i < 25; i++)
         cout << (char)bar1;
@@ -74,8 +74,8 @@ void searchbar()
     bar1 = 177;
     bar2 = 219;
 
-    cout << "\n\n\n\n\t\t\t\t\tSearching...";
-    cout << "\n\n\n\n\t\t\t\t\t";
+    cout << "\n\n\n\n\n\n\n\n\t\t\t\t\tSearching...";
+    cout << "\n\n\n\n\n\t\t\t\t\t";
 
     for (int i = 0; i < 25; i++)
         cout << (char)bar1;
@@ -103,8 +103,8 @@ void ReportgenBar()
     bar1 = 177;
     bar2 = 219;
 
-    cout << "\n\n\n\n\t\t\t\t\tGenerating Report.txt...";
-    cout << "\n\n\n\n\t\t\t\t\t";
+    cout << "\n\n\n\n\n\n\n\n\t\t\t\t\tGenerating Report.txt...";
+    cout << "\n\n\n\n\n\t\t\t\t\t";
 
     for (int i = 0; i < 25; i++)
         cout << (char)bar1;
