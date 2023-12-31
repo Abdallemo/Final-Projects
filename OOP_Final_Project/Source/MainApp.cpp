@@ -51,7 +51,7 @@ int main()
                     cout<<"\n"<<endl;
                     system("COLOR d0");
                     cout<<"................................Menu.........................................."<<endl;
-                    cout << "1. Set Your Information \t2. Delete Existing User info" << endl;
+                    cout << "1. Set Your Information \t 2. Delete Existing User info" << endl;
                     cout << "3. Update Existing User info \t 4. Generate text Base for All user info" << endl;
                     cout << "5. Display All Users Info \t 6.Search Existing User info" << endl;
                     cout<<"7.Exit"<<endl;
@@ -66,6 +66,7 @@ int main()
 
                             FTStracker.Register();
                             FTStracker.setDtails();
+                            cout<<"Your Auto Generted ID : "<<FTStracker.activities.Uniqueid<<endl;
                             FitnesList.insert(FTStracker);
                             break;
                         case 2:
