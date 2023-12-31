@@ -69,10 +69,10 @@ class Person
             
             cout<<"Enter Your Weight : ";
             cin>>weight;
-            while (weight <= 2)
+            while (weight <= 2 || weight >= 220)
             {
                 cout<<"Not a Normal Weight Try Again"<<endl;
-                cout<<"Enter Your Weight : ";
+                cout<<"Enter Your Weight (kg) : ";
 
                 cin>>weight;
                 cin.ignore();
@@ -80,7 +80,13 @@ class Person
             
             cout<<"Enter Your Hight : ";
             cin>>hight;
-            cin.ignore();
+            while(hight <=43 || hight >= 251)
+            {
+                cout<<hight<<" Is Invalid Height Try Again"<<endl;
+                cout<<"Enter Your Hight(cm) : ";
+                cin>>hight;
+                cin.ignore();
+            }
         }
         //getterts :)
         int getAge()const
@@ -201,7 +207,7 @@ double Activity::setBMR()
         break;
     case 5:
         cin.clear();
-        Activity::Uniqueid = string(1, alphabet[7]) + generateUniqueID();//same as other
+        Activity::Uniqueid = string(1, alphabet[3]) + generateUniqueID();//same as other
         return Calories = BMR*1.9;//act5
         break;
     default:
