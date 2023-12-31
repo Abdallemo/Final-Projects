@@ -1,7 +1,7 @@
 
 #include <fstream>  
 #include <Windows.h>
-#include "animation.hpp"
+//#include "animation.hpp"
 #include "Linklist(FTS).hpp"
 #include <ctime>
 using namespace std;
@@ -26,11 +26,12 @@ participants: Fahad , Abdikarin , marian & abdullahi
                     the main driver needs to be able to read write to a .txt file using librr ofstream 
                     wtring to a file Exmaple : ofstream MyFile("filename.txt");
                     reading from a file Exmaple : ifstream MyReadFile("filename.txt"); Reff: https://rb.gy/eh3dqi
+                    project inspirtion from : https://mohap.gov.ae/en/more/awareness-center/calories-calculation (UAE ministry of health and prevention)
 
 */
 int main()
 {
-    srand(static_cast<unsigned int>(time(nullptr)));
+    srand(static_cast<unsigned int>(time(nullptr)));//to use window time to generte randomatic number/Alphapets
     FtsList FitnesList;
     FitnessTracker FTStracker;
  int ch;
@@ -48,11 +49,13 @@ int main()
                 int adminChoice;
                 do {
                     cout<<"\n"<<endl;
-                    system("COLOR 5E");
-                    cout << "1. Set Your Information \t\t2. Delete Existing User info" << endl;
+                    system("COLOR d0");
+                    cout<<"................................Menu.........................................."<<endl;
+                    cout << "1. Set Your Information \t2. Delete Existing User info" << endl;
                     cout << "3. Update Existing User info \t 4. Generate text Base for All user info" << endl;
                     cout << "5. Display All Users Info \t 6.Search Existing User info" << endl;
                     cout<<"7.Exit"<<endl;
+                    puts("..............................................................................");
                     cout << "Enter (1-7): ";
                     cin.clear();
                     cin >> adminChoice;
@@ -100,28 +103,26 @@ int main()
             case 'U':
                 int user_Choice;
                 
-                // do
-                // {
-                //     system("COLOR 6F");
-                //     cout << "1. Set Your Information \t\t2. Delete Your Information" << endl;
-                //     cin.clear();
-                //     cin>>user_Choice;
-                //     switch (user_Choice)
-                //     {
-                //     case 1:
-                //         FTStracker.Register();
-                //         break;
-                    
-                //     default:
-                //         break;
-                //     }
-                // } while (use_facet !=3);
-                
-               
-                cout << "User Type" << endl;
-                break;
+                do
+                {
+                     system("Color b0");
+                    cout << "1. BMR & Calories Calculation \t\t2.Exit" << endl;
+                    cout<<"chose (1)or(2) : ";
+                    cin.clear();
+                    cin>>user_Choice;
+                    switch (user_Choice)
+                    {
+                    case 1:
+                        FTStracker.setDtails();
+                        cout<<"Your BMR : "<<FTStracker.activities.GetBMR()<<endl;
+                        cout<<"Your Calories : "<<FTStracker.activities.getCalories()<<endl;
+                        break;
+                    default:
+                        break;
+                    }
+                } while (user_Choice != 1);
+
             default:
-                cout << "Error. Try Again" << endl;
                 break;
         }
 
@@ -131,6 +132,5 @@ int main()
         cin >> ch;
         progressbar();
     }
-
     return 0;
 }

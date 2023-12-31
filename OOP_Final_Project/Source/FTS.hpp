@@ -128,14 +128,16 @@ string Activity::getGender()
         case 2:
             return "Female";
             break;
+        default:
+            return "Unknown";
     }
 }
 
 void Activity::GetPersonData()
 {
-    cout<<"|Age : "<<Age<<"|"<<endl;
-    cout<<"|Height : "<<hight<<"|"<<endl;
-    cout<<"|Weight : "<<weight<<"|"<<endl;
+    cout<<"|Age : "<<Age<<endl;
+    cout<<"|Height : "<<hight<<endl;
+    cout<<"|Weight : "<<weight<<endl;
 };
 
 string Activity::generateUniqueID()//this is for Random creation Number 
@@ -204,6 +206,7 @@ double Activity::setBMR()
         break;
     default:
         cout<<"InValid Choice Number to enter is b/w 1-6 "<<endl;
+        return 0.0;
         break;
     }
     
@@ -212,10 +215,16 @@ void Activity::setAct_type()
 {
     cout<<"...............................which Activities You Do ..............................."<<endl;
     puts("1.sedentary (little or no exercise)");
+    puts("");
     puts("2.lightly active (light exercise/sports 1-3 days/week)");
+    puts("");
     puts("3.moderately active (moderate exercise/sports 3-5 days/week)");
+    puts("");
     puts("4.very active (hard exercise/sports 6-7 days a week) :");
+    puts("");
     puts("5.extra active (very hard exercise/sports & physical job or 2x training)");
+    puts("");
+    puts(".......................................................................................");
     cout<<"Choose (1-5) : ";
     cin>>act_type;
     cin.ignore();
@@ -281,6 +290,7 @@ char FitnessTracker::SetType()
     
     default:
         cout<<"Something Went Wrong!!"<<endl;
+        return 'E';
         break;
     }
 };

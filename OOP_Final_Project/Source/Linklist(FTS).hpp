@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include  <list>
 #include <algorithm>
+#include "animation.hpp"
 /*
     *methods needed in this **
     //Search()
@@ -32,7 +33,7 @@ class FtsList
         void Display();
         void generateReport();
         int Isempty();
-        void progressbar();
+        void updtebar();
 
 FtsList()
 {
@@ -112,6 +113,7 @@ void FtsList::Delete(string Targetusr)
             previous_record->Nextptr = currnt_record->Nextptr;
         }
         delete currnt_record;
+        deleteBar();
         cout<<"User "<< Targetusr<<" deleted successfully.."<<endl;
         
     }else
@@ -142,7 +144,7 @@ void FtsList::Delete(string Targetusr)
         //time to update
         cout<<".....................Update Field....................."<<endl;
         Curr->trckerapp.setDtails();
-        progressbar();
+        updtebar();
         cout << "User " << TrgtUsr << " updated successfully." << endl;
 
     }else
@@ -166,6 +168,7 @@ void FtsList::generateReport()
             temp->trckerapp.generateReport();
             temp = temp->Nextptr;
         }
+         ReportgenBar();
     }
 
 };
@@ -203,6 +206,7 @@ void FtsList::Search(string usr)
         }
         if(Temp != nullptr)
         {
+            searchbar();
             cout<<"------------- UserName :"<<usr <<"found successfully-------------"<<endl;
             Temp->trckerapp.GetDetails();
             cout<<"....................................................................."<<endl;
@@ -216,7 +220,7 @@ void FtsList::Search(string usr)
     }
 
 };
-void FtsList::progressbar()
+void FtsList::updtebar()
 {
     system("COLOR 0e");
     system("cls");
