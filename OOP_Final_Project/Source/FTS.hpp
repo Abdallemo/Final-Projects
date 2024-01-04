@@ -1,4 +1,5 @@
 #include <iostream>
+#include <Windows.h>
 #include <fstream>
 #include <string>
 #include <limits>
@@ -218,16 +219,16 @@ double Activity::setBMR()
 void Activity::setAct_type()
 {
     cout<<"...............................which Activities You Do ..............................."<<endl;
-    puts("1.sedentary (little or no exercise)");
-    puts("");
-    puts("2.lightly active (light exercise/sports 1-3 days/week)");
-    puts("");
-    puts("3.moderately active (moderate exercise/sports 3-5 days/week)");
-    puts("");
-    puts("4.very active (hard exercise/sports 6-7 days a week) :");
-    puts("");
-    puts("5.extra active (very hard exercise/sports & physical job or 2x training)");
-    puts("");
+    puts("1.sedentary (little or no exercise)\n");
+    Sleep(50);
+    puts("2.lightly active (light exercise/sports 1-3 days/week)\n");
+    Sleep(50);
+    puts("3.moderately active (moderate exercise/sports 3-5 days/week)\n");
+    Sleep(50);
+    puts("4.very active (hard exercise/sports 6-7 days a week)\n");
+    Sleep(50);
+    puts("5.extra active (very hard exercise/sports & physical job or 2x training)\n");
+    Sleep(50);
     puts(".......................................................................................");
     cout<<"Choose (1-5) : ";
     cin>>act_type;

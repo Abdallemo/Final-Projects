@@ -114,6 +114,7 @@ int main()
                             FitnesList.Search(Targetuser);
                             break;
                         case 7:
+                            system("cls");
                             break;
                         default:
                             cout << "Invalid choice. Try again." << endl;
@@ -142,19 +143,21 @@ int main()
                         cout<<"Your BMR : "<<FTStracker.activities.GetBMR()<<endl;
                         cout<<"Your Calories : "<<FTStracker.activities.getCalories()<<endl;
                         puts("..............................................................................");
-
+                        break;
+                    case 2:
+                        system("cls");
                         break;
                     default:
                         break;
                     }
-                } while (user_Choice != 1);
+                } while (user_Choice != 2);
 
             default:
                 break;
         }
 
-        cout << "1. Start the App\n2. Exit the App" << endl;
-        cout << "Enter (1) or (2): ";
+        cout << "\n\t\t1. START THE APP\n\n\t\t2. EXIT THE APP\n" << endl;
+        cout << "ENTER (1) OR (2): ";
         cin >> ch;
         while(cin.fail()||ch<1||ch > 2)
         {
