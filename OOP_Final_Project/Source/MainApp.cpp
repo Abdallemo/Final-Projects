@@ -5,7 +5,6 @@
 #include "Linklist(FTS).hpp"
 #include <ctime>
 using namespace std;
-
 /*
 participants: Fahad , Abdikarin , marian & abdullahi
  ______________________________________________________________________________________________________
@@ -50,10 +49,8 @@ int main()
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout << "Invalid input! Enter (1) or (2): ";
         cin >> ch;
-
     }
     progressbar();
-
     while (ch == 1) {
 
         switch (FTStracker.SetType()) {

@@ -137,15 +137,23 @@ string Activity::generateUniqueID()//this is for Random creation Number
 */
 double Activity::setBMR()
 {
-   do
-    {
-        cout << "..Choose Your Gender.." << endl;
-        cout<<"1. Male\t\t2.Female"<<endl; 
-        cout<<"Enter Your Choice : ";
-        cin.clear();//to clear existing lines
-        cin >> Gender;
+ while (true) {
+        std::cout << "..Choose Your Gender.." << std::endl;
+        std::cout << "1. Male\t\t2. Female" << std::endl; 
+        std::cout << "Enter Your Choice : ";
+        
+        std::cin.clear();  // to clear existing lines
+        std::cin >> Gender;
 
-    } while ((Gender != 1 && Gender != 2)||cin.fail());
+        if (std::cin.fail() || (Gender != 1 && Gender != 2)) {
+            std::cin.clear();  // clear the input buffer
+            std::cin.ignore(INT_MAX, '\n');  // ignore any remaining characters in the buffer
+            std::cout << "Invalid input. Please enter 1 for Male or 2 for Female." << std::endl;
+        } else {
+            break;  // exit the loop if input is valid
+        }
+    }
+
     switch(Gender)
     {
         case 1:

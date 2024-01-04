@@ -11,9 +11,7 @@
     //Delete()
     //Add()
     generateReport()
-
 */
-
 class FtsList
 {
     private:
@@ -21,7 +19,6 @@ class FtsList
         {
             FitnessTracker trckerapp;
             FtsRecord *Nextptr;
-
         };
         FtsRecord *head;
     public:
@@ -34,7 +31,6 @@ class FtsList
         void generateReport();
         int Isempty();
         void updtebar();
-
 FtsList()
 {
     head = nullptr; //instrcutor first runs when the main app run so it automticly first head to Null:)
@@ -49,7 +45,6 @@ int FtsList::Isempty()
     {
         return 1;
     }
-    
 };
 void FtsList::sort()//reff= https://youtu.be/IgLc2z_6qPg also we  used sort and algorithum librr ✨
 {
@@ -72,7 +67,6 @@ void FtsList::sort()//reff= https://youtu.be/IgLc2z_6qPg also we  used sort and 
     {
         record.GetDetails();
     }
-    
 };
 void FtsList::insert(FitnessTracker newtrckerapp)
 {
@@ -86,9 +80,7 @@ void FtsList::insert(FitnessTracker newtrckerapp)
             return;
         }
         temp = temp->Nextptr;
-        
     }
-    
     FtsRecord *newNodeptr = new FtsRecord;
     if (newNodeptr ==nullptr)
     {
@@ -133,8 +125,6 @@ void FtsList::Delete(string Targetusr)
     {
         cout<<"User "<<Targetusr<<" not found."<<endl;
     }
-    
-    
 };
  void FtsList::Update(string TrgtUsr)
  {
@@ -165,8 +155,6 @@ void FtsList::Delete(string Targetusr)
         cout<<"User with Name "<<TrgtUsr<< " Didn't Found.."<<endl;
     }
  };
-
-
 void FtsList::generateReport()
 {
     FtsRecord *temp = head;
@@ -183,7 +171,6 @@ void FtsList::generateReport()
         }
          ReportgenBar();
     }
-
 };
 void FtsList::Display()
 {
@@ -191,26 +178,21 @@ void FtsList::Display()
     if(Temp==nullptr)
     {
         cout<<"Nothing To Generate Here"<<endl;
-
     }else
     {
         while (Temp != nullptr)
         {
             Temp->trckerapp.GetDetails();
             Temp=Temp->Nextptr;
-
         }
-        
     }
 }
-
 void FtsList::Search(string usr)
 {
     FtsRecord *Temp = head;
     if(Temp==nullptr)
     {
         cout<<"No Data Entered Yet!"<<endl;
-
     }else
     {
         while (Temp!=nullptr&&Temp->trckerapp.Username != usr)
@@ -220,18 +202,15 @@ void FtsList::Search(string usr)
         if(Temp != nullptr)
         {
             searchbar();
-            cout<<"------------- UserName :"<<usr <<"found successfully-------------"<<endl;
+            cout<<"------------- UserName :"<<usr <<" found successfully-------------"<<endl;
             Temp->trckerapp.GetDetails();
             cout<<"....................................................................."<<endl;
         }else
         {
             cout<<"\t\t!"<<endl;
             cout<<"UseName "<<usr<<" Not Found"<<endl;
-
         }
-        
     }
-
 };
 void FtsList::updtebar()
 {
@@ -239,28 +218,18 @@ void FtsList::updtebar()
     system("cls");
     SetConsoleCP(437);
     SetConsoleOutputCP(437);
-
     int bar1, bar2;
     bar1 = 177;
     bar2 = 219;
-
     cout << "\n\n\n\n\n\n\n\n\t\t\t\t\tUpdating...";
     cout << "\n\n\n\n\n\t\t\t\t\t";
-
     for (int i = 0; i < 25; i++)
         cout << (char)bar1;
-
     cout << "\r";
     cout << "\t\t\t\t\t";
-
     for (int i = 0; i < 25; i++) {
         cout << (char)bar2;
         Sleep(50);
     }
-
     system("cls");
 };
-
-
-
-
