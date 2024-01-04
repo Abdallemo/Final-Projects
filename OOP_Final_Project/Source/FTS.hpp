@@ -7,43 +7,6 @@
 #include<bits/stdc++.h>//for lowecse the usename so that we can sort them 
 using namespace std;
 #define SZ 40
-/*
-+---------------------+        +---------------------+         +---------------------+
-|   FitnessTracker   |        |      Activity       |         |       Person        |
-+---------------------+        +---------------------+         +---------------------+
-| - user_type: int    |        | - act_type: int      |         | - Age: int           |
-| - user_id: string   |        | - Calories: double  |         | - hight: int         |
-| - Username: string  |◄-------| - Gender: int        |         | - weight: int        |
-| - activities        |        | - BMR: double        |         +---------------------+
-+---------------------+        +---------------------+                 |
-   |                           | + setAct_type(): void|                 |
-   |                           | + setBMR(): double   |                 |
-   |                           | + GetBMR(): void     |                 |
-   |                           | + GetPersonData(): void                 |
-   |                           | + generateUniqueID(): string            |
-   V                           V                                        |
-+---------------------+        +---------------------+                 |
-|       Person        |        |      FitnessTracker  |                 |
-+---------------------+        +---------------------+                 |
-| + SetPerson(): void |        | - user_type: int    |                 |
-+---------------------+        | - user_id: string   |                 |
-                               | - activities: Activity|                 |
-                               +---------------------+                 |
-                               | + SetType(): char    |                 |
-                               | + setDtails(): void  |                 |
-                               | + Register(string): void              |
-                               | + GetDetails(): void |                 |
-                               +---------------------+ 
-
-
-avtivities :
-         (little or no exercise) BMR x 1.2
-         (light exercise/sports 1-3 days​/week)BMR x 1.375
-         (moderate exercise/sports 3-5 days/week)BMR x 1.55
-          (hard exercise/sports 6-7 days a week)BMR x 1.725
-          (very hard exercise/sports & physical job or 2x training)BMR x 1.9
-
-*/
 class Person
 {
     protected:
@@ -51,6 +14,11 @@ class Person
         int hight;
         int weight;
     public:
+            /*
+            *****************************************************************
+                        Set User's Age, Weight, And Height.                 *
+            *****************************************************************
+            */
         void SetPerson()
         {
             cout<<"Enter Your Age : ";
@@ -100,7 +68,6 @@ class Person
             return weight;
         }
 };
-
 //____________________________________________________________________________________________________________
 class Activity:public Person //Now class is a child of class Person🎗️
 {
@@ -120,8 +87,12 @@ class Activity:public Person //Now class is a child of class Person🎗️
         string generateUniqueID();
         double getCalories()const;
         string getGender();
-
 };
+/*
+            *****************************************************************
+                       Get user's gender as a string.     .                 *
+            *****************************************************************
+*/
 string Activity::getGender()
 {
     switch(Gender)
@@ -136,14 +107,22 @@ string Activity::getGender()
             return "Unknown";
     }
 };
-
+/*
+            *****************************************************************
+                        Display user's age, height, and weight.             *
+            *****************************************************************
+*/
 void Activity::GetPersonData()
 {
     cout<<"|Age             : "<<Age<<endl;
     cout<<"|Height          : "<<hight<<endl;
     cout<<"|Weight          : "<<weight<<endl;
 }
-
+/*
+            *****************************************************************
+                       Generate a unique ID for the user                    *
+            *****************************************************************
+*/
 string Activity::generateUniqueID()//this is for Random creation Number 
 {
     static int counter = 10;//Id for first Registerer will start from 10
@@ -151,7 +130,11 @@ string Activity::generateUniqueID()//this is for Random creation Number
     int randomNumber = counter++;
     return string(1, randomAlphabet) + to_string(randomNumber);
 }
-
+/*
+            *****************************************************************
+                       Set most of user info & set program logic.           *
+            *****************************************************************
+*/
 double Activity::setBMR()
 {
    do
@@ -214,8 +197,12 @@ double Activity::setBMR()
         return 0.0;
         break;
     }
-    
 };
+/*
+            *****************************************************************
+                       Set the type of activity.                            *
+            *****************************************************************
+*/
 void Activity::setAct_type()
 {
     cout<<"...............................which Activities You Do ..............................."<<endl;
@@ -238,9 +225,7 @@ void Activity::setAct_type()
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout<<"Invalid choice!! . Choose (1-5) : ";
         cin>>act_type;
-
     }
-
 };
 double Activity::GetBMR()const
 {
@@ -250,9 +235,7 @@ double Activity::getCalories()const
 {
     return Calories;
 }
-
 //____________________________________________________________________________________________________________
-
 class FitnessTracker
 {
     private:
@@ -267,8 +250,12 @@ class FitnessTracker
         void GetDetails();
         char SetType();
         void generateReport();// :) 
-        
 };
+/*
+            *****************************************************************
+                        Set user type as admin or user.                     *
+            *****************************************************************
+*/
 char FitnessTracker::SetType()
 {
     cout<<"................Login Type................"<<endl;
@@ -287,8 +274,6 @@ char FitnessTracker::SetType()
         puts("2.User Account Type");
         cout<<"Choose (1) Or (2) : ";
         cin>>user_type;
-
-        
     }
     switch (user_type)//here is when we deciding b/w user or admin
     {
@@ -298,22 +283,29 @@ char FitnessTracker::SetType()
     case 2:
         return 'U';//U for user
         break;
-    
     default:
         cout<<"Something Went Wrong!!"<<endl;
         return 'E';
         break;
     }
 };
-
+/*
+            *****************************************************************
+                        Set details such as BMR for the user.               *
+            *****************************************************************
+*/
 void FitnessTracker::setDtails()
 {
     activities.setBMR();
-    
 };
+
+/*
+            *****************************************************************
+                       Register a user with a username.                     *
+            *****************************************************************
+*/
 void FitnessTracker::Register()
 {
-    
     cout<<"................User Account Creation................"<<endl;
     cout<<"Enter UserName : ";
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -321,11 +313,15 @@ void FitnessTracker::Register()
 
     transform(Username.begin(), Username.end(), Username.begin(), ::tolower); //ref. https://en.cppreference.com/w/cpp/string/wide/towlower
     //?sorting is alphapetic sensitive so we convert username to lowercase
-
 };
+
+/*
+            *****************************************************************
+                        Display user details.                               *
+            *****************************************************************
+*/
 void FitnessTracker::GetDetails()
 {
-
     cout<<"...............User Data............... "<<endl;
     cout<<"|Username        : @"<<Username<<""<<endl;
     cout<<"|User Id         : "<<activities.Uniqueid<<""<<endl;
@@ -334,9 +330,12 @@ void FitnessTracker::GetDetails()
     cout<<"|User BMR        : "<<activities.GetBMR()<<""<<endl;
     cout<<"|Calories Burned : "<<activities.getCalories()<<""<<endl;
     cout<<"|______________________________________________"<<endl;
-    
 };
-
+/*
+            *****************************************************************
+                       generate a report and save to "Report.txt".          *
+            *****************************************************************
+*/
 void FitnessTracker::generateReport()
 {
     fstream myFile;
@@ -353,5 +352,4 @@ void FitnessTracker::generateReport()
         myFile << "Calories: "<<activities.getCalories()<<"\n";
         myFile <<".....................................................\n";
     }
-
 }
