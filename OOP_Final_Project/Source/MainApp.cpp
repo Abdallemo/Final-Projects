@@ -36,9 +36,12 @@ int main()
     FitnessTracker FTStracker;
  int ch;
  string Targetuser;
-    
-    cout << "1. Start the App\n2. Exit the App" << endl;
-    cout << "Enter (1) or (2): ";
+    puts("\n\t\t\tFITNESS\n\n\t\t\tTRACKER\n\n\t\t\tPROJECT\n");
+    puts("\nMADE BY : GR14");
+    Sleep(1900);
+    system("CLS");
+    cout << "\n\t\t1. START THE APP\n\n\t\t2. EXIT THE APP\n" << endl;
+    cout << "ENTER (1) OR (2): ";
     cin.clear();
     cin >> ch;
     while(cin.fail()||ch<1||ch > 2)
@@ -63,7 +66,7 @@ int main()
                     cout << "1. Set Your Information \t 2. Delete Existing User info" << endl;
                     cout << "3. Update Existing User info \t 4. Generate text Base for All user info" << endl;
                     cout << "5. Display All Users Info \t 6.Search Existing User info" << endl;
-                    cout<<"7.Exit"<<endl;
+                    cout << "7. Exit"<<endl;
                     puts("..............................................................................");
                     cout << "Enter (1-7): ";
                     cin.clear();
@@ -80,7 +83,6 @@ int main()
                     switch (adminChoice) 
                     {
                         case 1:
-
                             FTStracker.Register();
                             FTStracker.setDtails();
                             cin.clear();
@@ -127,8 +129,8 @@ int main()
                     system("Color b0");
                     puts("\n\n");
                     puts("..............................................................................");
-                    cout << "\t\t\t1. BMR & Calories Calculation \t\t2.Exit" << endl;
-                    cout << "\t\t\tchoose (1)or(2) : ";
+                    cout << "\t\t1. BMR & Calories Calculation \t\t2.Exit" << endl;
+                    cout << "\nchoose (1)or(2) : ";
                     cin.clear();
                     cin>>user_Choice;
                     switch (user_Choice)

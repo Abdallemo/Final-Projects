@@ -62,13 +62,13 @@ void FtsList::sort()//reff= https://youtu.be/IgLc2z_6qPg also we  used sort and 
     FtsRecord *Temp = head;
     while (Temp!=nullptr)
     {
-        FTRecords.push_back(Temp->trckerapp);
+        FTRecords.push_back(Temp->trckerapp);//it Copies each FitnessTracker object from the linked list nodes to the FTRecords list
         Temp = Temp->Nextptr;
     }
   FTRecords.sort([](const FitnessTracker &a, const FitnessTracker &b) {
         return a.Username < b.Username;
     });
-    for (auto& record : FTRecords)
+    for (auto& record : FTRecords)//using a range-based for loop
     {
         record.GetDetails();
     }
@@ -76,6 +76,19 @@ void FtsList::sort()//reff= https://youtu.be/IgLc2z_6qPg also we  used sort and 
 };
 void FtsList::insert(FitnessTracker newtrckerapp)
 {
+    FtsRecord *temp = head;
+    //!Here we are checking if username already in the nodes
+    while (temp != nullptr)
+    {
+        if (temp->trckerapp.Username==newtrckerapp.Username)
+        {
+            cout << "Username '" << newtrckerapp.Username << "' already exists. Cannot add duplicate user." << endl;
+            return;
+        }
+        temp = temp->Nextptr;
+        
+    }
+    
     FtsRecord *newNodeptr = new FtsRecord;
     if (newNodeptr ==nullptr)
     {

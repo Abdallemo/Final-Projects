@@ -3,9 +3,6 @@
 #include <string>
 #include <limits>
 #include<cstdlib>
-
-
-
 #include<bits/stdc++.h>//for lowecse the usename so that we can sort them 
 using namespace std;
 #define SZ 40
@@ -64,7 +61,7 @@ class Person
                 cout<<"Invalid input!"<<endl;
                 cout<<"Enter Your Age : ";
                 cin>>Age;
-            }
+            }//looping until user inputs a correct or valid number✨
             
             cout<<"Enter Your Weight : ";
             cin>>weight;
@@ -75,7 +72,7 @@ class Person
                 cout<<"Not a Normal Weight Try Again"<<endl;
                 cout<<"Enter Your Weight (kg) : ";
                 cin>>weight;
-            }
+            }//looping until user inputs a correct or valid number✨
             
             cout<<"Enter Your Hight : ";
             cin>>hight;
@@ -86,7 +83,7 @@ class Person
                 cout<<hight<<" Is Invalid Height Try Again"<<endl;
                 cout<<"Enter Your Hight(cm) : ";
                 cin>>hight;
-            }
+            }//looping until user inputs a correct or valid number✨
         }
         //getterts :)
         int getAge()const
@@ -104,14 +101,14 @@ class Person
 };
 
 //____________________________________________________________________________________________________________
-class Activity:public Person
+class Activity:public Person //Now class is a child of class Person🎗️
 {
     protected:
         int act_type;
         double Calories;
-        int Gender; //1 for men 2 for women|
+        int Gender; //1 for men👲 2 for women🙍‍♀️|
         double BMR;
-        char alphabet[SZ]={"ABCDEFGHIJKLMNO"};
+        char alphabet[SZ]={"ABCDEFGHIJKLMNO"};//here a Random alphptic we'll use it for generaing ids 
 
     public:
         string Uniqueid;
@@ -137,19 +134,19 @@ string Activity::getGender()
         default:
             return "Unknown";
     }
-}
+};
 
 void Activity::GetPersonData()
 {
-    cout<<"|Age : "<<Age<<endl;
-    cout<<"|Height : "<<hight<<endl;
-    cout<<"|Weight : "<<weight<<endl;
-};
+    cout<<"|Age             : "<<Age<<endl;
+    cout<<"|Height          : "<<hight<<endl;
+    cout<<"|Weight          : "<<weight<<endl;
+}
 
 string Activity::generateUniqueID()//this is for Random creation Number 
 {
-    static int counter = 10;
-    char randomAlphabet = alphabet[rand() % (sizeof(alphabet) - 1)];
+    static int counter = 10;//Id for first Registerer will start from 10
+    char randomAlphabet = alphabet[rand() % (sizeof(alphabet) - 1)];// randomAlphabet could now hold any Uppercase letter from A to O in char alphabet[SZ]={"ABCDEFGHIJKLMNO"};
     int randomNumber = counter++;
     return string(1, randomAlphabet) + to_string(randomNumber);
 }
@@ -158,14 +155,13 @@ double Activity::setBMR()
 {
    do
     {
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout << "..Choose Your Gender.." << endl;
-        cout<<"1. Male\t\t2.Female"<<endl;
+        cout<<"1. Male\t\t2.Female"<<endl; 
         cout<<"Enter Your Choice : ";
+        cin.clear();//to clear existing lines
         cin >> Gender;
-    } while ((Gender != 1 && Gender != 2)||cin.fail());
 
+    } while ((Gender != 1 && Gender != 2)||cin.fail());
     switch(Gender)
     {
         case 1:
@@ -208,7 +204,7 @@ double Activity::setBMR()
         break;
     case 5:
         cin.clear();
-        cin.ignore();
+        
         Activity::Uniqueid = string(1, alphabet[3]) + generateUniqueID();//same as other
         return Calories = BMR*1.9;//act5
         break;
@@ -235,7 +231,14 @@ void Activity::setAct_type()
     puts(".......................................................................................");
     cout<<"Choose (1-5) : ";
     cin>>act_type;
-    cin.ignore();
+    while(cin.fail()|| act_type <1 || act_type >5)
+    {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout<<"Invalid choice!! . Choose (1-5) : ";
+        cin>>act_type;
+
+    }
 
 };
 double Activity::GetBMR()const
@@ -247,16 +250,13 @@ double Activity::getCalories()const
     return Calories;
 }
 
-
 //____________________________________________________________________________________________________________
-
 
 class FitnessTracker
 {
     private:
         int user_type;
         string user_id;
-        
         
     public:
         Activity activities;
@@ -274,8 +274,9 @@ char FitnessTracker::SetType()
     puts("1.administrator Account Type");
     puts("2.User Account Type");
     cout<<"Choose (1) Or (2) : ";
+    cin.clear();
     cin>>user_type;
-    while(user_type != 1 && user_type != 2&&cin.fail())
+    while(user_type != 1 && user_type != 2&&cin.fail())//cin.fail() used  again misbehaive like if you enter string where to enter a int✨
     {
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -291,10 +292,10 @@ char FitnessTracker::SetType()
     switch (user_type)//here is when we deciding b/w user or admin
     {
     case 1:
-        return 'A';
+        return 'A';//A stands for admin
         break;
     case 2:
-        return 'U';
+        return 'U';//U for user
         break;
     
     default:
@@ -311,31 +312,25 @@ void FitnessTracker::setDtails()
 };
 void FitnessTracker::Register()
 {
+    
     cout<<"................User Account Creation................"<<endl;
     cout<<"Enter UserName : ";
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     getline(cin,Username);
-    while(cin.fail()||Username.empty())
-    {
-        // cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        cout<<Username<<" Is Invalid Try again"<<endl;
-        cout<<"Enter UserName : ";
-        getline(cin,Username);
-    }
+
     transform(Username.begin(), Username.end(), Username.begin(), ::tolower); //ref. https://en.cppreference.com/w/cpp/string/wide/towlower
     //?sorting is alphapetic sensitive so we convert username to lowercase
-    
 
 };
 void FitnessTracker::GetDetails()
 {
 
     cout<<"...............User Data............... "<<endl;
-    cout<<"|Username : @"<<Username<<""<<endl;
-    cout<<"|User Id : "<<activities.Uniqueid<<""<<endl;
+    cout<<"|Username        : @"<<Username<<""<<endl;
+    cout<<"|User Id         : "<<activities.Uniqueid<<""<<endl;
+    cout<<"|User Gender     : "<<activities.getGender()<<""<<endl;
     activities.GetPersonData();
-    cout<<"|User BMR : "<<activities.GetBMR()<<""<<endl;
+    cout<<"|User BMR        : "<<activities.GetBMR()<<""<<endl;
     cout<<"|Calories Burned : "<<activities.getCalories()<<""<<endl;
     cout<<"|______________________________________________"<<endl;
     
