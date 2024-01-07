@@ -22,20 +22,38 @@ struct ThesisRecord
 };
 
 typedef struct ThesisRecord *Thesis_RecordPtr;
-int ThesisIDCounter = 1000;//this is for Automtic generate An Thesis_ID
+
+/*
+ * Global variable to keep track of the Thesis ID counter
+ * it Initialized to a starting value of 1000
+ */
+int ThesisIDCounter = 1000;
+
 // Function to generate a unique Thesis_ID for each record
 void generateThesisID(StudentRecord *record);
+
 void Insert(Thesis_RecordPtr *head,StudentRecord NewRecord);//FIFO method (First Recorded First on the List)
+
 bool Delete(Thesis_RecordPtr *head, char Target_ID[NID]);
+
 void Display_Info(Thesis_RecordPtr Current_head);
+
 int IsEmpty(Thesis_RecordPtr head);
+
 void UpdateRecord(Thesis_RecordPtr *head,char Target_ID[NID],char NewData[NSize],int fieldToUpdate);//usecase to Update
+
 void search(Thesis_RecordPtr *head,char Target_ID[NID]);
+
 void bubbleSortByName(Thesis_RecordPtr *head);
+
 void swapNodes(Thesis_RecordPtr a, Thesis_RecordPtr b);
-void Instruction();
-void getInput(const char *prompt, char *input, int max_length);
+
+void Instruction();//to display the instruction menu for the user
+
+void getInput(const char *prompt, char *input, int max_length);//to get user input with a specified prompt without typing over and over again😌
+
 void convertToUpper(char *str);
+void convertToLower(char *str);
 
 
 int main()
@@ -66,6 +84,8 @@ int main()
                 getInput("\nEnter Student Name", StudentName, NSize);
                 strcpy(StdRecord.Student_Name,StudentName);
 
+                convertToLower(StdRecord.Student_Name);
+
                 getInput("\nEnter Student ID", StudentID, NID);
                 while (strcmp(StudentID,StdRecord.Student_ID)==0)//1.input Validation 
                 {
@@ -89,6 +109,7 @@ int main()
                 printf("\n$ The Status List : progress(P), submitted(S), under review(U) $\n");
                 getInput("Enter the Thesis Status (use charecters)", Status,NSize);
                 convertToUpper(Status);
+
                 //2.input validation in here
                while (strcmp(Status, "P") != 0 && strcmp(Status, "S") != 0 && strcmp(Status, "U") != 0)
                 {
@@ -184,6 +205,12 @@ int main()
     return 0;
 }
 
+        /*
+        *****************************************************************
+        Function to insert a new student record into the linked list
+        *****************************************************************
+
+        */
 void Insert(Thesis_RecordPtr *head, StudentRecord NewRecord)
 {
     Thesis_RecordPtr NewRecordptr = (Thesis_RecordPtr)malloc(sizeof(struct ThesisRecord));
@@ -211,7 +238,11 @@ void Insert(Thesis_RecordPtr *head, StudentRecord NewRecord)
         printf("Error! No more memory available\n");
     }
 }
-
+        /*
+        *****************************************************************
+        Boolan type to delete an existing student record from the linked list✨✨
+        *****************************************************************
+        */
 bool Delete(Thesis_RecordPtr *head, char Target_ID[NID]) {
     if (*head == NULL) {
         printf("Nothing To Delete Here\n");
@@ -235,6 +266,7 @@ bool Delete(Thesis_RecordPtr *head, char Target_ID[NID]) {
     }
 
     // If the node is found this Function Deletes
+    
     if (current != NULL) {
         prev->next = current->next;
         free(current);
@@ -244,6 +276,18 @@ bool Delete(Thesis_RecordPtr *head, char Target_ID[NID]) {
         return false;
     }
 }
+
+/*
+
+ * Function to update specific fields of an existing student record
+ * Parameters:
+ * - head: Pointer to the head of the linked list
+ * - Target_ID: ID of the student record to be updated
+ * - NewData: New data to be updated in the specified field
+ * - fieldToUpdate: Field identifier (1 for Student Name, 2 for Student ID, 3 for Student Program)
+ *
+*/
+
 void UpdateRecord(Thesis_RecordPtr *head, char Target_ID[NID], char NewData[NSize],int fieldToUpdate) {
     Thesis_RecordPtr current = *head;
 
@@ -289,6 +333,12 @@ void Instruction()
     puts("-------------------------------------------------------------------\n");
     printf("Enter Your Choice : ");
 }
+    /*
+    * the function is to search for and display existing information about a specific student record
+    * Parameters are :
+    * - head: Pointer to the head of the linked list
+    * - Target_ID: ID of the student record to be searched
+    */
 void search(Thesis_RecordPtr *head, char Target_ID[NID]) {
     Thesis_RecordPtr current = *head;
 
@@ -315,10 +365,23 @@ void search(Thesis_RecordPtr *head, char Target_ID[NID]) {
         printf("Student with ID %s not found\n", Target_ID);
     }
 }
+
+/*
+ * Function to get user input with a specified prompt
+ * Parameters:
+ * - prompt: The message prompt to display to the user
+ * - input: The buffer to store the user input
+ * - max_length: The maximum length of the input buffer
+ */
+
 void getInput(const char *prompt, char *input, int max_length)
 {
+    // Display the prompt message to the use
     printf("%s: ", prompt);
+    // Read user input from the standard input :)
     fgets(input, max_length, stdin);
+
+    // Remove the newline character from the input (if present)
     input[strcspn(input, "\n")] = '\0';
 }
 
@@ -328,11 +391,26 @@ void convertToUpper(char *str) {
         str++;
     }
 }
+void convertToLower(char *str)
+{
+    for (int i = 0; str[i] != '\0'; i++) {
+        str[i] = tolower((unsigned char)str[i]);
+    }
+}
+
+/*
+ * Function to generate a unique Thesis ID for each record
+ * Parameters:
+ * - record: Pointer to the StudentRecord structure to store the generated Thesis ID
+ */
 void generateThesisID(StudentRecord *record)
 {
+    // Format the Thesis ID using a template "T%04d" (e.g., T1001)
     sprintf(record->Thesis_ID, "T%04d", ThesisIDCounter++);
+    //!and aslo The counter is incremented for the next Thesis ID so when we record a new student it will be T1002 and so on
 
 }
+
 void Display_Info(Thesis_RecordPtr Current_head)
 {
     if (IsEmpty(Current_head))
@@ -368,34 +446,49 @@ int IsEmpty(Thesis_RecordPtr head)
 {
      return head == NULL;
 }
-void bubbleSortByName(Thesis_RecordPtr *head) {
-    int swapped;
-    Thesis_RecordPtr current;
-    Thesis_RecordPtr last = NULL;
 
-    // Base case: empty or single-node list
+/*
+ * Function to sort the linked list of student records by name using the bubble sort algorithm
+ * Parameters:
+ * - head: Pointer to the head of the linked list
+ */
+
+void bubbleSortByName(Thesis_RecordPtr *head) {
+    int swapped;//to track if any swaps were made
+    Thesis_RecordPtr current;// Pointer to the current node 
+    Thesis_RecordPtr last = NULL;// Pointer to the last node
+
+    // if empty or single-node list
     if (*head == NULL || (*head)->next == NULL) {
-        return;
+        return;//we dont need to sort
     }
 
     do {
         swapped = 0;
-        current = *head;
+        current = *head; // we will Start from the head of the list
 
         while (current->next != last) {
-            // Compare adjacent nodes and swap if needed based on Student_Name
-            if (strcmp(current->Records.Student_Name, current->next->Records.Student_Name) > 0) {
-                swapNodes(current, current->next);
+            
+            if (strcmp(current->Records.Student_Name, current->next->Records.Student_Name) > 0) 
+            {
+                swapNodes(current, current->next);// Swap nodes
                 swapped = 1;
             }
-            current = current->next;
+            current = current->next;// and Move to the next pair of nodes✨🎗️
         }
         last = current;
 
     } while (swapped);
 }
+
+/*
+ * Function to swap the data of two nodes in the linked list
+ * Parameters:
+ * - a: Pointer to the first node
+ * - b: Pointer to the second node
+ */
 void swapNodes(Thesis_RecordPtr a, Thesis_RecordPtr b) {
-    StudentRecord temp = a->Records;
+    StudentRecord temp = a->Records;// Temporary variable to hold data during the swap
     a->Records = b->Records;
     b->Records = temp;
 }
