@@ -76,7 +76,7 @@ class Activity:public Person //Now class is a child of class Person🎗️
         double Calories;
         int Gender; //1 for men👲 2 for women🙍‍♀️|
         double BMR;
-        char alphabet[SZ]={"ABCDEFGHIJKLMNO"};//here a Random alphptic we'll use it for generaing ids 
+        char alphabet[SZ]={"ABCDEFGHIJKLMNOSV"};//here a Random alphptic we'll use it for generaing ids 
 
     public:
         string Uniqueid;
@@ -128,8 +128,9 @@ string Activity::generateUniqueID()//this is for Random creation Number
     static int counter = 10;//Id for first Registerer will start from 10
     char randomAlphabet = alphabet[rand() % (sizeof(alphabet) - 1)];// randomAlphabet could now hold any Uppercase letter from A to O in char alphabet[SZ]={"ABCDEFGHIJKLMNO"};
     int randomNumber = counter++;
-    return string(1, randomAlphabet) + to_string(randomNumber);
+    return to_string(randomNumber);
 }
+
 /*
             *****************************************************************
                        Set most of user info & set program logic.           *
@@ -176,28 +177,28 @@ double Activity::setBMR()
     {
     case 1:
         cin.clear();
-        Activity::Uniqueid = string(1, alphabet[0]) + generateUniqueID();//if user chosed act1 his ID will start from A
+        Activity::Uniqueid = string(1, alphabet[15]) + generateUniqueID();//if user chosed act1 his ID will start from A
         return Calories = BMR*1.2; //act1
         break;
     case 2:
         cin.clear();
-        Activity::Uniqueid = string(1, alphabet[2]) + generateUniqueID();//if user chosed act2 his ID will start from C
+        Activity::Uniqueid = string(1, alphabet[11]) + generateUniqueID();//if user chosed act2 his ID will start from C
         return Calories = BMR*1.375;//act2
         break;
     case 3:
         cin.clear();
-        Activity::Uniqueid = string(1, alphabet[5]) + generateUniqueID();//if user chosed act3 his ID will start from F
+        Activity::Uniqueid = string(1, alphabet[12]) + generateUniqueID();//if user chosed act3 his ID will start from F
         return Calories = BMR*1.55;//act3
         break;
     case 4:
         cin.clear();
-        Activity::Uniqueid = string(1, alphabet[10]) + generateUniqueID();//if user chosed act4 his ID will start from K
+        Activity::Uniqueid = string(1, alphabet[16]) + generateUniqueID();//if user chosed act4 his ID will start from K
         return Calories = BMR*1.725;//act4
         break;
     case 5:
         cin.clear();
         
-        Activity::Uniqueid = string(1, alphabet[3]) + generateUniqueID();//same as other
+        Activity::Uniqueid = string(1, alphabet[4]) + generateUniqueID();//same as other
         return Calories = BMR*1.9;//act5
         break;
     default:

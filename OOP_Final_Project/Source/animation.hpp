@@ -8,6 +8,7 @@ void progressbar()
 {
     system("COLOR 0e");
     system("cls");
+    
     SetConsoleCP(437);
     SetConsoleOutputCP(437);
 
