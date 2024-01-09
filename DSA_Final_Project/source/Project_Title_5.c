@@ -8,11 +8,21 @@
     Subcriteria:
         Syntax
         Logical
+
         implementation/process
+        insert☑️ delete☑️ travers☑️ search☑️ & sort☑️
+
         3 different input validation
-        User-friendly interface
-        Correct Input
-        Correct Output
+            1.input Validation line 90
+            2.input validation line 114
+            3.input validation line 125
+            4.input validation line 136
+            5.input validation line 252
+            6.input validation line 305
+
+        User-friendly interface☑️
+        Correct Input☑️
+        Correct Output☑️
 
 */
 struct ThesisRecord
@@ -27,7 +37,7 @@ typedef struct ThesisRecord *Thesis_RecordPtr;
  * Global variable to keep track of the Thesis ID counter
  * it Initialized to a starting value of 1000
  */
-int ThesisIDCounter = 1000;
+int ThesisIDCounter = 10;
 
 // Function to generate a unique Thesis_ID for each record
 void generateThesisID(StudentRecord *record);
@@ -167,6 +177,7 @@ int main()
                 scanf("%d", &fieldToUpdate);
                     // Clear input buffer
                 while (getchar() != '\n');
+
                 if(fieldToUpdate==1){
                     getInput("Enter Student Name", NewData, NID);
                 }else if (fieldToUpdate==2)
@@ -177,7 +188,6 @@ int main()
                 {
                     getInput("Enter Student Program", NewData, NID);
                 }
-                
                 UpdateRecord(&strPtr, StudentID, NewData, fieldToUpdate);
             break;    
             case 4:
@@ -406,7 +416,7 @@ void convertToLower(char *str)
 void generateThesisID(StudentRecord *record)
 {
     // Format the Thesis ID using a template "T%04d" (e.g., T1001)
-    sprintf(record->Thesis_ID, "T%04d", ThesisIDCounter++);
+    sprintf(record->Thesis_ID, "TI%04d", ThesisIDCounter++);
     //!and aslo The counter is incremented for the next Thesis ID so when we record a new student it will be T1002 and so on
 
 }
