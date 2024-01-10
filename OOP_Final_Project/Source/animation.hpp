@@ -3,17 +3,17 @@
 // #include <cstdlib> 
 using namespace std;
 
-void progressbar() 
+void progressbar() //reff: https://en.wikipedia.org/wiki/Code_page_437
 
 {
     system("COLOR 0e");
     system("cls");
     
-    SetConsoleCP(437);
+    SetConsoleCP(437);//Sets the console input code page to 437 (OEM-US) is it character encoding
     SetConsoleOutputCP(437);
 
-    int bar1, bar2;
-    bar1 = 177;
+    int bar1, bar2;//to hold block character codes.
+    bar1 = 177;//it will look like  (█) 
     bar2 = 219;
 
     cout << "\n\n\n\n\n\n\n\n\t\t\t\t\tLoading...";
