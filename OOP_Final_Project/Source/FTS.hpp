@@ -126,7 +126,6 @@ void Activity::GetPersonData()
 string Activity::generateUniqueID()//this is for Random creation Number 
 {
     static int counter = 10;//Id for first Registerer will start from 10
-    char randomAlphabet = alphabet[rand() % (sizeof(alphabet) - 1)];// randomAlphabet could now hold any Uppercase letter from A to O in char alphabet[SZ]={"ABCDEFGHIJKLMNO"};
     int randomNumber = counter++;
     return to_string(randomNumber);
 }

@@ -30,7 +30,6 @@ participants: Fahad , Abdikarin , marian & abdullahi
 */
 int main()
 {
-    srand(static_cast<unsigned int>(time(nullptr)));//to use window time to generte randomatic number/Alphapets
     FtsList FitnesList;
     FitnessTracker FTStracker;
  int ch;
