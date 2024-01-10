@@ -33,7 +33,7 @@ class FtsList
         void updtebar();
 FtsList()
 {
-    head = nullptr; //instrcutor first runs when the main app run so it automticly first head to Null:)
+    head = nullptr; //constrcutor first runs when the main app run so it automticly first head to Null:)
 }
 };
 int FtsList::Isempty()
